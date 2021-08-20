@@ -9,6 +9,7 @@ PROXIES = {
     "https": "http://127.0.0.1:10809"
 }
 
+EUSERV_MSG = ''
 desp = ''  # 空值
 
 def log(info: str):
