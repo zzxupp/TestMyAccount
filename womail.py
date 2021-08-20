@@ -2,28 +2,18 @@
 
 import json,os,re,requests
 
-def pushplus(key,title,content):
-    url = 'http://www.pushplus.plus/send'
-    data = {
-        "token": key,
-        "title": title,
-        "content": content,
-        "template": "json"
-    }
-    body = json.dumps(data).encode(encoding='utf-8')
-    headers = {'Content-Type': 'application/json'}
-    response = requests.post(url, data=body, headers=headers).json()
-    if int(response["code"] / 100) != 2:
-        print('PushPlus 推送失败')
+def qw360(QW360_TOKEN, message):
+    response = requests.get('https://push.bot.qw360.cn/send/' + QW360_TOKEN + '?msg=' + mess).json()
+    if (response["status"]) != 1:
+        print('qw360 推送失败')
     else:
-        print('PushPlus 推送成功')
+        print('qw360 推送成功') 
 
-def qmsg(qmsg_key, qq, style): # style: msg,json,xml
-    # urlg='https://qmsg.zendee.cn/group/' + qmsg_key  #群消息推送接口
+def qmsg(qmsg_key, qq, message): 
     urls='https://qmsg.zendee.cn/send/' + qmsg_key   #私聊消息推送接口
     data = {
         "qq": qq,
-        "msg": style
+        "msg": message
     }
     response = requests.post(urls,data=data).json()
     if int(response["code"] / 100) != 0:
@@ -152,11 +142,11 @@ class WoMailCheckIn:
 
 if __name__ == "__main__":
     _check_item = json.loads(os.getenv('WOMAIL_URL'))
-    PUSHPLUSTOKEN = os.getenv('PUSHPLUS_TOKEN')
+    QW360_TOKEN = os.getenv('QW360_TOKEN')
     QQ = os.environ["QQ"]
     QMSG_KEY = os.environ["QMSG_KEY"]
     _lottery_url = 'https://club.mail.wo.cn/ActivityWeb/activity-web/index?activityId=387&typeIdentification=scratchable&resourceId=wo-wx&'
     message = WoMailCheckIn(check_item=_check_item,lottery_url = _lottery_url).main()
+    
     qmsg(QMSG_KEY, QQ, '@face=181@ 沃邮箱 - 签到提醒:\n' + message)
-    pushplus(PUSHPLUSTOKEN, '沃邮箱 - 签到提醒', message)
-    print(message)
+    qw360(QW360_TOKEN, '沃邮箱 - 签到提醒', message)
