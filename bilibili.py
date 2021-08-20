@@ -265,7 +265,7 @@ class BiliBiliCheckIn(object):
         )
         success_count = 0
         uname, uid, is_login, coin, vip_type, current_exp = self.get_nav(session=session)
-        # print(uname, uid, is_login, coin, vip_type, current_exp)
+        print(uname, uid, is_login, coin, vip_type, current_exp)
         if is_login:
             manhua_msg = self.manga_sign(session=session)
             print(manhua_msg)
