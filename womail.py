@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import json,os
+import requests,json,os
 
 WOMAIL_MSG = ''
 
