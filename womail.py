@@ -149,4 +149,4 @@ if __name__ == "__main__":
     message = WoMailCheckIn(check_item=_check_item,lottery_url = _lottery_url).main()
     
     qmsg(QMSG_KEY, QQ, '@face=181@ 沃邮箱 - 签到提醒:\n' + message)
-    qw360(QW360_TOKEN, '沃邮箱 - 签到提醒', message)
+    qw360(QW360_TOKEN, '沃邮箱 - 签到提醒' + message)
