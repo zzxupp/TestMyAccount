@@ -31,7 +31,10 @@ jobs:
         QQ: ${{ secrets.QQ }}
         QMSG_KEY: ${{ secrets.QMSG_KEY }}
         WOMAIL_URL: ${{ secrets.WOMAIL_URL }}
+        EUSERV_USERNAME: ${{ secrets.EUSERV_USERNAME }}
+        EUSERV_PASSWORD: ${{ secrets.EUSERV_PASSWORD }}
       run: |
         python3 womail.py
         python3 glados.py
+        python3 euserv.py
         python3 pushmsg.py
