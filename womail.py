@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import json,os,re,requests
+import json,os,re,requests,time
 
 def qw360(QW360_TOKEN, message):
     response = requests.get('https://push.bot.qw360.cn/send/' + QW360_TOKEN + '?msg=' + message).json()
@@ -147,6 +147,7 @@ if __name__ == "__main__":
     QMSG_KEY = os.environ["QMSG_KEY"]
     _lottery_url = 'https://club.mail.wo.cn/ActivityWeb/activity-web/index?activityId=387&typeIdentification=scratchable&resourceId=wo-wx&'
     message = WoMailCheckIn(check_item=_check_item,lottery_url = _lottery_url).main()
-    
+    print('working...')
+    time.sleep(15)
     qmsg(QMSG_KEY, QQ, '@face=181@ 沃邮箱 - 签到提醒:\n' + message)
     qw360(QW360_TOKEN, '沃邮箱 - 签到提醒：\n' + message)
