@@ -9,12 +9,12 @@ PROXIES = {
     "https": "http://127.0.0.1:10809"
 }
 
-EUSERV_MSG = ''  # 空值
+desp = ''  # 空值
 
 def log(info: str):
-    #print(info)
-    global EUSERV_MSG
-    EUSERV_MSG = EUSERV_MSG + info + '\n'
+    print(info)
+    global desp
+    desp = desp + info + '\n'
     
 def login(username, password) -> (str, requests.session):
     headers = {
@@ -120,7 +120,7 @@ def check(sess_id, session):
     if flag:
         log("ALL Work Done! Enjoy")
  
-if __name__ == "__main__":
+def main():
     if not USERNAME or not PASSWORD:
         print("你没有添加任何账户")
         exit(1)
@@ -150,3 +150,7 @@ if __name__ == "__main__":
         check(sessid, s)
         time.sleep(5)
     print('*' * 30)
+    
+if __name__ == "__main__":
+    main()
+    EUSERV_MSG = desp
