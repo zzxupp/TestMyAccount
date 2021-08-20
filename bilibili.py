@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import sys
-sys.path.append("My-Actions/function/bilibili/")
+sys.path.append("My-Actions/")
 from bilibiliapi import *
-from sendNotify import *
 
-sendNotify = sendNotify()
-SEND_KEY = os.environ['SEND_KEY']
-BILI_COOKIE = os.environ['BILI_COOKIE'].replace(" ", "")
+#SEND_KEY = os.environ['SEND_KEY']
+#BILI_COOKIE = os.environ['BILI_COOKIE'].replace(" ", "")
+BILI_USER = os.environ['BILI_USER']
+BILI_PASS = os.environ['BILI_PASS']
 
 class BiliBiliCheckIn(object):
     # 待测试，需要大会员账号测试领取福利
@@ -244,12 +244,12 @@ class BiliBiliCheckIn(object):
         else:
             coin_num = int(os.environ['BILI_NUM'])
 
-        if os.environ['BILI_TYPE'] == "":
+        if os.environ['BILI_TYPE'] == "666":
             coin_type = 1 # 投币方式 默认为 1 ；1: 为关注用户列表视频投币 0: 为随机投币。如果关注用户发布的视频不足配置的投币数，则剩余部分使用随机投币
         else:
             coin_type = int(os.environ['BILI_TYPE'])
 
-        if os.environ['BILI_S2C'] == "":
+        if os.environ['BILI_S2C'] == "666":
             silver2coin = True # 是否开启银瓜子换硬币，默认为 True 开启
         else:
             silver2coin = False
@@ -258,7 +258,7 @@ class BiliBiliCheckIn(object):
         requests.utils.add_dict_to_cookiejar(session.cookies, bilibili_cookie)
         session.headers.update(
             {
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/63.0.3239.108",
+                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/637.36 Chrome/92.0.4515.159",
                 "Referer": "https://www.bilibili.com/",
                 "Connection": "keep-alive",
             }
@@ -350,8 +350,8 @@ class BiliBiliCheckIn(object):
                 f"按当前速度升级还需: {update_data}天\n{live_stats}"
             )
             print(msg)
-            if SEND_KEY == '':
-                sendNotify.send(title = u"哔哩哔哩签到",msg = msg)
+            #if SEND_KEY == '':
+                #sendNotify.send(title = u"哔哩哔哩签到",msg = msg)
             msg_list.append(msg)
         return msg_list
 
@@ -367,7 +367,7 @@ if __name__ == "__main__":
         b = Bilibili()
         login = b.login(username=os.environ['BILI_USER'], password=os.environ['BILI_PASS'])
         if login == False:
-            sendNotify.send(title = u"哔哩哔哩签到", msg = "登录失败 账号或密码错误，详情前往Github查看")
+            #sendNotify.send(title = u"哔哩哔哩签到", msg = "登录失败 账号或密码错误，详情前往Github查看")
             exit(0)
         _bilibili_cookie_list = b.get_cookies()
     else:
