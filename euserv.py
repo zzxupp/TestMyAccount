@@ -1,8 +1,8 @@
-import os,re,json,time,requests
+import os,re,json,time,requests,datetime
 from bs4 import BeautifulSoup
 
-USERNAME = os.environ["USERNAME"]
-PASSWORD = os.environ["PASSWORD"]
+USERNAME = os.environ["EUSERV_USERNAME"]
+PASSWORD = os.environ["EUSERV_PASSWORD"]
 
 PROXIES = {
     "http": "http://127.0.0.1:10809",
@@ -119,7 +119,7 @@ def check(sess_id, session):
     if flag:
         log("ALL Work Done! Enjoy")
  
-#if __name__ == "__main__":
+if __name__ == "__main__":
     if not USERNAME or not PASSWORD:
         print("你没有添加任何账户")
         exit(1)
