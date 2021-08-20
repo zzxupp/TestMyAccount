@@ -5,8 +5,6 @@ from bilibiliapi import *
 
 #SEND_KEY = os.environ['SEND_KEY']
 BILI_COOKIE = os.environ['BILI_COOKIE'].replace(" ", "")
-BILI_USER = os.environ['BILI_USER']
-BILI_PASS = os.environ['BILI_PASS']
 
 class BiliBiliCheckIn(object):
     # 待测试，需要大会员账号测试领取福利
