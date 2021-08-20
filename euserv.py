@@ -152,6 +152,6 @@ def main():
         time.sleep(5)
     print('*' * 30)
     
-if __name__ == "__main__":
-    main()
-    EUSERV_MSG = desp
+#if __name__ == "__main__":
+main()
+EUSERV_MSG = desp
