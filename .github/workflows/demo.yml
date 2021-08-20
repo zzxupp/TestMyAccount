@@ -26,10 +26,11 @@ jobs:
         
     - name: Build and publish
       env: 
-        PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+        QW360_TOKEN: ${{ secrets.QW360_TOKEN }}
         GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
         QQ: ${{ secrets.QQ }}
         QMSG_KEY: ${{ secrets.QMSG_KEY }}
         WOMAIL_URL: ${{ secrets.WOMAIL_URL }}
       run: |
         python3 womail.py
+        python3 glados.py
