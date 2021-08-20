@@ -369,6 +369,8 @@ if __name__ == "__main__":
         if login == False:
             #sendNotify.send(title = u"哔哩哔哩签到", msg = "登录失败 账号或密码错误，详情前往Github查看")
             exit(0)
+        else:
+            print("登录成功")
         _bilibili_cookie_list = b.get_cookies()
     else:
         _bilibili_cookie_list = {cookie.split('=')[0]:cookie.split('=')[-1] for cookie in BILI_COOKIE.split(';')}
