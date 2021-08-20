@@ -1,36 +1,27 @@
 import requests,json,os
 
-PUSHPLUSTOKEN = os.environ["PUSHPLUS_TOKEN"]
-qq = os.environ["QQ"]
-qmsg_key = os.environ["QMSG_KEY"]
-cookie = os.environ["COOKIE"]
+QW360_TOKEN = os.environ["QW360_TOKEN"]
+GLADOS_COOKIE = os.environ["GLADOS_COOKIE"]
+QQ = os.environ["QQ"]
+QMSG_KEY = os.environ["QMSG_KEY"]
     
     
-def pushplus(token, title, content):
-    url = 'http://www.pushplus.plus/send'
-    data = {
-        "token": token,
-        "title": title,
-        "content": content
-    }
-    body = json.dumps(data).encode(encoding='utf-8')
-    headers = {'Content-Type': 'application/json'}
-    rs = requests.post(url, data=body, headers=headers).json()
-    if int(rs["code"] / 100) != 2:
-        print('PushPlus 推送失败')
+def qw360(QW360_TOKEN, message):
+    response = requests.get('https://push.bot.qw360.cn/send/' + QW360_TOKEN + '?msg=' + mess).json()
+    if (response["status"]) != 1:
+        print('qw360 推送失败')
     else:
-        print('PushPlus 推送成功')
+        print('qw360 推送成功') 
         
         
-def qmsg(qmsg_key, qq, style): # style: msg,json,xml
-    # urlg='https://qmsg.zendee.cn/group/' + qmsg_key  #群消息推送接口
+def qmsg(qmsg_key, qq, message): 
     urls='https://qmsg.zendee.cn/send/' + qmsg_key   #私聊消息推送接口
     data = {
         "qq": qq,
-        "msg": style
+        "msg": message
     }
-    rs = requests.post(urls,data=data).json()
-    if int(rs["code"] / 100) != 0:
+    response = requests.post(urls,data=data).json()
+    if int(response["code"] / 100) != 0:
         print('Qmsg酱 推送失败')
     else:
         print('Qmsg酱 推送成功')
@@ -45,14 +36,13 @@ def start():
     payload={
         'token': 'glados_network'
     }
-    checkin = requests.post(url,headers={'cookie': cookie ,'referer': referer,'origin':origin,'user-agent':useragent,'content-type':'application/json;charset=UTF-8'},data=json.dumps(payload))
-    state =  requests.get(url2,headers={'cookie': cookie ,'referer': referer,'origin':origin,'user-agent':useragent})
+    checkin = requests.post(url,headers={'cookie': GLADOS_COOKIE ,'referer': referer,'origin':origin,'user-agent':useragent,'content-type':'application/json;charset=UTF-8'},data=json.dumps(payload))
+    state =  requests.get(url2,headers={'cookie': GLADOS_COOKIE ,'referer': referer,'origin':origin,'user-agent':useragent})
    # print(res)
 
     if 'message' in checkin.text:
         mess = checkin.json()['message']
         if mess == '\u6ca1\u6709\u6743\u9650':
-            #requests.get('https://sc.ftqq.com/' + sckey + '.send?text=cookie过期')
             print('cookie过期')
             return 'cookie过期'
         time = state.json()['data']['leftDays']
@@ -72,5 +62,5 @@ def main_handler(event, context):
 
 if __name__ == '__main__':
     mes = start()
-    qmsg(qmsg_key, qq, '@face=181@ GLaDOS日志:\n' + mes)
-    pushplus(PUSHPLUSTOKEN, 'GLaDOS日志', mes)
+    qmsg(QMSG_KEY, QQ, '@face=181@ GLaDOS - 签到提醒:\n' + mes)
+    qw360(QW360_TOKEN, 'GLaDOS - 签到提醒:\n' + mes)
