@@ -1,6 +1,7 @@
 import json,os,re,requests
 import womail
 import glados
+import euserv
 
 QW360_TOKEN = os.getenv('QW360_TOKEN')
 QQ = os.environ["QQ"]
@@ -26,6 +27,6 @@ def qmsg(qmsg_key, qq, message):
         print('Qmsg酱 推送成功')
 
 
-qmsg(QMSG_KEY, QQ, '@face=181@ 沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + '@face=181@ GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)
-qw360(QW360_TOKEN, '沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + 'GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)   
+qmsg(QMSG_KEY, QQ, '@face=181@ 沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + '@face=181@ GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG + '@face=181@ Euserv - 签到提醒:\n' + euserv.EUSERV_MSG)
+qw360(QW360_TOKEN, '沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + 'GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG  + 'Euserv - 签到提醒:\n' + euserv.EUSERV_MSG)   
 print('沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + 'GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)
