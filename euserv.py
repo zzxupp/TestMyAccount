@@ -12,7 +12,8 @@ PROXIES = {
 EUSERV_MSG = ''  # 空值
 
 def log(info: str):
-    print(info)
+    #print(info)
+    global EUSERV_MSG
     EUSERV_MSG = EUSERV_MSG + info + '\n'
     
 def login(username, password) -> (str, requests.session):
