@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
-#sys.path.append("My-Actions/")
+sys.path.append("My-Actions/")
 from bilibiliapi import *
 
 #SEND_KEY = os.environ['SEND_KEY']
