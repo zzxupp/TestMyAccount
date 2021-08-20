@@ -4,7 +4,7 @@ sys.path.append("My-Actions/")
 from bilibiliapi import *
 
 #SEND_KEY = os.environ['SEND_KEY']
-#BILI_COOKIE = os.environ['BILI_COOKIE'].replace(" ", "")
+BILI_COOKIE = os.environ['BILI_COOKIE'].replace(" ", "")
 BILI_USER = os.environ['BILI_USER']
 BILI_PASS = os.environ['BILI_PASS']
 
