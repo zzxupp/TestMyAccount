@@ -1,31 +1,7 @@
-import requests,json,os,time
+import requests,json,os
 
-QW360_TOKEN = os.environ["QW360_TOKEN"]
-GLADOS_COOKIE = os.environ["GLADOS_COOKIE"]
-QQ = os.environ["QQ"]
-QMSG_KEY = os.environ["QMSG_KEY"]
-    
-    
-def qw360(QW360_TOKEN, message):
-    response = requests.get('https://push.bot.qw360.cn/send/' + QW360_TOKEN + '?msg=' + message).json()
-    if (response["status"]) != 1:
-        print('qw360 推送失败')
-    else:
-        print('qw360 推送成功') 
-        
-        
-def qmsg(qmsg_key, qq, message): 
-    urls='https://qmsg.zendee.cn/send/' + qmsg_key   #私聊消息推送接口
-    data = {
-        "qq": qq,
-        "msg": message
-    }
-    response = requests.post(urls,data=data).json()
-    if int(response["code"] / 100) != 0:
-        print('Qmsg酱 推送失败')
-    else:
-        print('Qmsg酱 推送成功')
-
+GLADOS_COOKIE = os.environ["GLADOS_COOKIE"]  
+GLADOS_MSG = ''
 
 def start(): 
     url= "https://glados.rocks/api/user/checkin"
@@ -61,8 +37,5 @@ def main_handler(event, context):
   return start()
 
 if __name__ == '__main__':
-    mes = start()
-    print('working...')
-    time.sleep(15)
-    qmsg(QMSG_KEY, QQ, '@face=181@ GLaDOS - 签到提醒:\n' + mes)
-    qw360(QW360_TOKEN, 'GLaDOS - 签到提醒:\n' + mes)
+    GLADOS_MSG = 'start()'
+
