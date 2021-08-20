@@ -1,4 +1,4 @@
-import requests,json,os
+import requests,json,os,time
 
 QW360_TOKEN = os.environ["QW360_TOKEN"]
 GLADOS_COOKIE = os.environ["GLADOS_COOKIE"]
@@ -62,5 +62,7 @@ def main_handler(event, context):
 
 if __name__ == '__main__':
     mes = start()
+    print('working...')
+    time.sleep(15)
     qmsg(QMSG_KEY, QQ, '@face=181@ GLaDOS - 签到提醒:\n' + mes)
     qw360(QW360_TOKEN, 'GLaDOS - 签到提醒:\n' + mes)
