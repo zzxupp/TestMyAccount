@@ -13,13 +13,13 @@ jobs:
         uses: actions/checkout@v2
       
       - name: 'Avoid Github Workflow being suspended'
-        run: echo $(cat /proc/sys/kernel/random/uuid) > UUID.txt
+        run: echo $(cat /proc/sys/kernel/random/uuid) > demo.txt
       
       - name: 'Commit Files'
         id: commit
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "action@gmail.com"
+          git config --local user.name "g00gle"
           git add .
           git diff --quiet && git diff --staged --quiet || git commit -am 'avoid being suspended'
           echo ::set-output name=status::success
