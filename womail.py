@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import json
-import os
-import re
-import requests
+import json,os,re,requests
 
 def push(key,title,content):
     url = 'http://www.pushplus.plus/send'
@@ -138,7 +135,7 @@ class WoMailCheckIn:
         return msg
 
 if __name__ == "__main__":
-    _check_item = json.loads(os.getenv('DATA'))
+    _check_item = json.loads(os.getenv('WOMAIL_URL'))
     PUSHPLUSTOKEN = os.getenv('PUSHPLUS_TOKEN')
     _lottery_url = 'https://club.mail.wo.cn/ActivityWeb/activity-web/index?activityId=387&typeIdentification=scratchable&resourceId=wo-wx&'
     massage = WoMailCheckIn(check_item=_check_item,lottery_url = _lottery_url).main()
