@@ -3,7 +3,7 @@
 import json,os,re,requests
 
 def qw360(QW360_TOKEN, message):
-    response = requests.get('https://push.bot.qw360.cn/send/' + QW360_TOKEN + '?msg=' + mess).json()
+    response = requests.get('https://push.bot.qw360.cn/send/' + QW360_TOKEN + '?msg=' + message).json()
     if (response["status"]) != 1:
         print('qw360 推送失败')
     else:
