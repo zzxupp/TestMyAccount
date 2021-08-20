@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import sys
-sys.path.append("My-Actions/function/bilibili/")
+sys.path.append("My-Actions")
 from bilibiliapi import *
-from sendNotify import *
+#from sendNotify import *
 
-sendNotify = sendNotify()
+#sendNotify = sendNotify()
 SEND_KEY = os.environ['SEND_KEY']
 BILI_COOKIE = os.environ['BILI_COOKIE'].replace(" ", "")
 
@@ -350,8 +350,8 @@ class BiliBiliCheckIn(object):
                 f"按当前速度升级还需: {update_data}天\n{live_stats}"
             )
             print(msg)
-            if SEND_KEY == '':
-                sendNotify.send(title = u"哔哩哔哩签到",msg = msg)
+            #if SEND_KEY == '':
+                #sendNotify.send(title = u"哔哩哔哩签到",msg = msg)
             msg_list.append(msg)
         return msg_list
 
@@ -360,7 +360,7 @@ if __name__ == "__main__":
     # 未填写参数取消运行
     if os.environ['BILI_USER'] == "" or os.environ['BILI_PASS'] == "":
         if os.environ['BILI_COOKIE'] == "":
-            print("未填写哔哩哔哩账号密码或COOKIE取消运行")
+            #print("未填写哔哩哔哩账号密码或COOKIE取消运行")
             exit(0)
 
     if BILI_COOKIE == "":
