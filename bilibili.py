@@ -258,7 +258,7 @@ class BiliBiliCheckIn(object):
         requests.utils.add_dict_to_cookiejar(session.cookies, bilibili_cookie)
         session.headers.update(
             {
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/637.36 Chrome/92.0.4515.159",
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36 Edg/89.0.774.54",
                 "Referer": "https://www.bilibili.com/",
                 "Connection": "keep-alive",
             }
