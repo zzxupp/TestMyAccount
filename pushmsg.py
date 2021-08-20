@@ -26,6 +26,6 @@ def qmsg(qmsg_key, qq, message):
         print('Qmsg酱 推送成功')
 
 
-    qmsg(QMSG_KEY, QQ, '@face=181@ 沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + '@face=181@ GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)
-    qw360(QW360_TOKEN, '沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + 'GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)   
-    print('沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + 'GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)
+qmsg(QMSG_KEY, QQ, '@face=181@ 沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + '@face=181@ GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)
+qw360(QW360_TOKEN, '沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + 'GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)   
+print('沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + 'GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)
