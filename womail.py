@@ -156,7 +156,7 @@ if __name__ == "__main__":
     QQ = os.environ["QQ"]
     QMSG_KEY = os.environ["QMSG_KEY"]
     _lottery_url = 'https://club.mail.wo.cn/ActivityWeb/activity-web/index?activityId=387&typeIdentification=scratchable&resourceId=wo-wx&'
-    massage = WoMailCheckIn(check_item=_check_item,lottery_url = _lottery_url).main()
-    qmsg(QMSG_KEY, QQ, '@face=181@ 沃邮箱 - 签到提醒:\n' + mes)
-    pushplus(PUSHPLUSTOKEN, '沃邮箱 - 签到提醒', massage)
-    print(massage)
+    message = WoMailCheckIn(check_item=_check_item,lottery_url = _lottery_url).main()
+    qmsg(QMSG_KEY, QQ, '@face=181@ 沃邮箱 - 签到提醒:\n' + message)
+    pushplus(PUSHPLUSTOKEN, '沃邮箱 - 签到提醒', message)
+    print(message)
