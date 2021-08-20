@@ -1,35 +1,19 @@
-import os
-import re
-import json
-import time
-import requests
+import os,re,json,time,requests
 from bs4 import BeautifulSoup
 
 USERNAME = os.environ["USERNAME"]
 PASSWORD = os.environ["PASSWORD"]
-
-
-TGBOTTOKEN = os.environ["TG_BOT_TOKEN"]  # 通过 @BotFather 申请获得，示例：1077xxx4424:AAFjv0FcqxxxxxxgEMGfi22B4yh15R5uw
-TGUSERID = os.environ["TG_USER_ID"]  # 用户、群组或频道 ID，示例：129xxx206
-TGAPIHOST = 'https://api.telegram.org'  # 自建 API 反代地址，供网络环境无法访问时使用，网络正常则保持默认
-
-SCKEY = os.environ["SC_KEY"]  # 这里填Server酱的key，无需推送可不填 示例: SCU646xxxxxxxxdacd6a5dc3f6
-
-SRE24TOKEN = os.environ["SRE24_TOKEN"]  # 填「一键免费推送」的token
-
-PUSHPLUSTOKEN = os.environ["PUSHPLUS_TOKEN"] # 填「PushPlus推送」的token
 
 PROXIES = {
     "http": "http://127.0.0.1:10809",
     "https": "http://127.0.0.1:10809"
 }
 
-desp = ''  # 空值
+EUSERV_MSG = ''  # 空值
 
 def log(info: str):
     print(info)
-    global desp
-    desp = desp + info + '\n'
+    EUSERV_MSG = EUSERV_MSG + info + '\n'
     
 def login(username, password) -> (str, requests.session):
     headers = {
@@ -69,7 +53,7 @@ def get_servers(sess_id, session) -> {}:
     url = "https://support.euserv.com/index.iphp?sess_id=" + sess_id
     headers = {
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
-                      "Chrome/83.0.4103.116 Safari/537.36",
+                      "Chrome/92.0.4515.159 Safari/537.36",
         "origin": "https://www.euserv.com"
     }
     f = session.get(url=url, headers=headers)
@@ -134,59 +118,8 @@ def check(sess_id, session):
             log("ServerID: %s Renew Failed!" % key)
     if flag:
         log("ALL Work Done! Enjoy")
-
-# Telegram Bot Push https://core.telegram.org/bots/api#authorizing-your-bot
-def telegram():
-    data = (
-        ('chat_id', TGUSERID),
-        ('text', 'EUserv续费日志\n\n' + desp)
-    )
-    response = requests.post(TGAPIHOST + '/bot' + TGBOTTOKEN + '/sendMessage', data=data)
-    if response.status_code != 200:
-        print('Telegram Bot 推送失败')
-    else:
-        print('Telegram Bot 推送成功')
-
-
-# Server酱 http://sc.ftqq.com/?c=code
-def server_chan():
-    data = (
-        ('text', 'EUserv续费日志'),
-        ('desp', desp)
-    )
-    response = requests.post('https://sc.ftqq.com/' + SCKEY + '.send', data=data)
-    if response.status_code != 200:
-        print('Server酱 推送失败')
-    else:
-        print('Server酱 推送成功')
-
-
-def sre24():
-    msg = 'EUserv续费日志\n\n' + desp
-    url = 'https://push.jwks123.cn/to/'
-    rs = requests.post(url, json=dict(token=SRE24TOKEN, msg=msg)).json()
-    if int(rs["code"] / 100) != 2:
-        print('sre24 推送失败')
-    else:
-        print('sre24 推送成功')
-        
-def pushplus():
-    url = 'http://www.pushplus.plus/send'
-    data = {
-        "token": PUSHPLUSTOKEN,
-        "title": 'EUserv续费日志',
-        "content": desp
-    }
-    body = json.dumps(data).encode(encoding='utf-8')
-    headers = {'Content-Type': 'application/json'}
-    rs = requests.post(url, data=body, headers=headers).json()
-    if int(rs["code"] / 100) != 2:
-        print('PushPlus 推送失败')
-    else:
-        print('PushPlus 推送成功')
-
-        
-if __name__ == "__main__":
+ 
+#if __name__ == "__main__":
     if not USERNAME or not PASSWORD:
         print("你没有添加任何账户")
         exit(1)
@@ -215,10 +148,4 @@ if __name__ == "__main__":
         time.sleep(15)
         check(sessid, s)
         time.sleep(5)
-            
-    # telegram()
-    # server_chan()
-    # sre24()
-    pushplus()
-    
     print('*' * 30)
