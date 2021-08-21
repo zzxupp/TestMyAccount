@@ -258,8 +258,8 @@ def run_task(phone, password):
     # 推送
     message = res_login + "\n\n" + res_sign + "\n\n" + res_m_sign + "\n\n" + res_task
     print(30 * "=")
-    CLOUDMUSIC_MSG = CLOUDMUSIC_MSG + (message + '\n')
+    return message
 
 if __name__ != "__main__":
-    run_task('pingxuzheng@163.com', '53e77cd8fc7c1e5dba5aeab7cd1d3e52')
+    CLOUDMUSIC_MSG = run_task('pingxuzheng@163.com', '53e77cd8fc7c1e5dba5aeab7cd1d3e52')
     
