@@ -355,7 +355,7 @@ class BiliBiliCheckIn(object):
             )
             print(msg)
             if SEND_KEY == '':
-                Print 'sendNotify.send(title = u"哔哩哔哩签到",msg = msg)'
+                Print('sendNotify.send(title = u"哔哩哔哩签到",msg = msg)')
             msg_list.append(msg)
         return msg_list
 
@@ -371,7 +371,7 @@ if __name__ == "__main__":
         b = Bilibili()
         login = b.login(username=os.environ['BILI_USER'], password=os.environ['BILI_PASS'])
         if login == False:
-            print 'sendNotify.send(title = u"哔哩哔哩签到", msg = "登录失败 账号或密码错误，详情前往Github查看")'
+            print('sendNotify.send(title = u"哔哩哔哩签到", msg = "登录失败 账号或密码错误，详情前往Github查看")')
             exit(0)
         _bilibili_cookie_list = b.get_cookies()
     else:
