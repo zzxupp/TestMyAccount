@@ -122,10 +122,6 @@ def check(sess_id, session):
         log("ALL Work Done! Enjoy")
  
 def main():
-    today = datetime.datetime.today()
-    if int(today.day) != 28:
-        EUSERV_MSG =  ''
-        exit(1)
     if not USERNAME or not PASSWORD:
         print("你没有添加任何账户")
         exit(1)
