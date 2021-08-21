@@ -358,9 +358,11 @@ class BiliBiliCheckIn(object):
                 silver2coin_ret = self.silver2coin(session=session, bili_jct=bili_jct)
                 if silver2coin_ret["code"] == 0:
                     silver2coin_msg = f"成功将银瓜子兑换为1个硬币"
-                else:
+                elif silver2coin_ret["code"] == -111:
                     silver2coin_msg = silver2coin_ret["message"]
-                #print(silver2coin_msg)
+                else:
+                    silver2coin_msg = silver2coin_ret["meg"]
+                print(silver2coin_msg)
             else:
                 silver2coin_msg = f"未开启银瓜子兑换硬币功能"
             time.sleep(random.randint(10,19))
