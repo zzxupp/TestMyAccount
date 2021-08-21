@@ -21,7 +21,7 @@ jobs:
       with:
         python-version: 3.8
 
-    - name: Install Python
+    - name: Install
       run: |
         sudo apt update && \
         sudo apt install python3
@@ -51,7 +51,10 @@ jobs:
         BILI_TYPE: ${{ secrets.BILI_TYPE }}
         BILI_S2C: ${{ secrets.BILI_S2C }}
         SEND_KEY: ${{ secrets.SEND_KEY }}
-
+        CLOUDMUSIC_PHONE: ${{ secrets.CLOUDMUSIC_PHONE }}
+        CLOUDMUSIC_PASSWORD: ${{ secrets.CLOUDMUSIC_PASSWORD }}
+        CLOUDMUSIC_PASSWORD_PLAIN: ${{ secrets.CLOUDMUSIC_PASSWORD_PLAIN }}
+        
     - name: ${{ env.CACHE_NAME }}
       uses: actions/cache@v2
       env:
