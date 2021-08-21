@@ -69,7 +69,7 @@ class BiliBiliCheckIn(object):
         return msg
 
     @staticmethod
-    def manga_book(session, platform=) -> dict:
+    def manga_book(session) -> dict:
         """
         模拟B站漫画看书
         """
@@ -77,7 +77,7 @@ class BiliBiliCheckIn(object):
             url = "https://manga.bilibili.com/twirp/bookshelf.v1.Bookshelf/AddHistory"
             post_data = {
                 "device": "pc",
-                "platform": "web"platform,
+                "platform": "web",
                 "comic_id": "27355",
                 "ep_id": "381662"
             }
