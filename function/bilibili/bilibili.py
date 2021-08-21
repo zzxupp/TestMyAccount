@@ -82,6 +82,8 @@ class BiliBiliCheckIn(object):
                 "ep_id": "381662"
             }
             ret = session.post(url=url + "?device=pc&platform=web", data=post_data).json()
+            print('漫画看书')
+            print(ret)
             if ret["code"] == 0:
                 msg = "本日漫画自动阅读1章节成功！，阅读漫画为：堀与宫村"
             elif ret["msg"] == "clockin clockin is duplicate":
@@ -90,7 +92,7 @@ class BiliBiliCheckIn(object):
                 msg = f'签到失败，信息为({ret["msg"]})'
         except Exception as e:
             msg = f"签到异常,原因为: {str(e)}"
-       print(msg)
+        print(msg)
         return 
     
     @staticmethod
