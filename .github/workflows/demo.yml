@@ -33,6 +33,9 @@ jobs:
         python -m pip install --upgrade beautifulsoup4
         
     - name: Build and publish
+      run: |
+        python3 bilibili.py
+        python3 pushmsg.py
       env: 
         QW360_TOKEN: ${{ secrets.QW360_TOKEN }}
         GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
@@ -43,19 +46,14 @@ jobs:
         EUSERV_PASSWORD: ${{ secrets.EUSERV_PASSWORD }}
         BILI_USER: ${{ secrets.BILI_USER }}
         BILI_PASS: ${{ secrets.BILI_PASS }}
-      run: |
-        python3 bilibili.py
 
-      - name:  ${{ env.CACHE_NAME }}
-      #- name: 缓存 Pip 模块
-        uses: actions/cache@v2
-        env:
-          CACHE_NAME:  缓存 Pip 模块
-        with:
-          # This path is specific to Ubuntu
-          path: ~/.cache/pip
-          # Look to see if there is a cache hit for the corresponding requirements file
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-            ${{ runner.os }}-
+    - name: ${{ env.CACHE_NAME }}
+      uses: actions/cache@v2
+      env:
+        CACHE_NAME:  缓存 Pip 模块
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          ${{ runner.os }}-
