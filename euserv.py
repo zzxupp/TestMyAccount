@@ -125,7 +125,7 @@ def main():
     today = datetime.datetime.today()
     if int(today.day) != 28:
         EUSERV_MSG =  ''
-        exit(1)
+        exit(0)
     if not USERNAME or not PASSWORD:
         print("你没有添加任何账户")
         exit(1)
