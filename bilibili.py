@@ -298,12 +298,21 @@ class BiliBiliCheckIn(object):
         # print(uname, uid, is_login, coin, vip_type, current_exp)
         if is_login:
             manhua_msg = self.manga_sign(session=session)
-            print(manhua_msg)
+            time.sleep(random.randint(7,19))
+            print('-----------随机暂停14s左右------------')
+            
             manhua_book = self.manga_book(session=session)
-            print(manhua_book)     
+            time.sleep(random.randint(7,19))
+            print('-----------随机暂停14s左右------------') 
+            
             live_msg = self.live_sign(session=session)
-            print(live_msg)
+            time.sleep(random.randint(7,19))
+            print('-----------随机暂停14s左右------------')
+            
             aid_list = self.get_region(session=session)
+            time.sleep(random.randint(7,19))
+            print('-----------随机暂停14s左右------------')
+            
             reward_ret = self.reward(session=session)
             # print(reward_ret) # 取消本段输出
             coins_av_count = reward_ret.get("data", {}).get("coins_av") // 10
@@ -364,6 +373,8 @@ class BiliBiliCheckIn(object):
                 print(silver2coin_msg)
             else:
                 silver2coin_msg = f"未开启银瓜子兑换硬币功能"
+            time.sleep(random.randint(10,19))
+            print('-----------随机暂停14s左右------------')
             live_stats = self.live_status(session=session)
             uname, uid, is_login, new_coin, vip_type, new_current_exp = self.get_nav(session=session)
             #print(uname, uid, is_login, new_coin, vip_type, new_current_exp)
