@@ -82,7 +82,6 @@ class BiliBiliCheckIn(object):
                 "ep_id": "381662"
             }
             ret = session.post(url=url, data=post_data).json()
-            print('漫画看书')
             return ret
             print(ret["msg"])
             print(ret["data"])
