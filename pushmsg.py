@@ -27,9 +27,10 @@ def qmsg(qmsg_key, qq, message):
     else:
         print('Qmsg酱 推送成功')
 
-msg = 'bilibili.BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()'
-
-qmsg(QMSG_KEY, QQ, WOMAIL_MSG + '\n\n' + GLADOS_MSG + '\n\n' + BILIBILI_MSG + '\n\n' + EUSERV_MSG)
-qw360(QW360_TOKEN, WOMAIL_MSG + '\n\n' + GLADOS_MSG + '\n\n' + BILIBILI_MSG + '\n\n' + EUSERV_MSG)
-print(WOMAIL_MSG + '\n\n' + GLADOS_MSG + '\n\n' + BILIBILI_MSG + '\n\n' + EUSERV_MSG)
+#qmsg(QMSG_KEY, QQ, WOMAIL_MSG + '\n\n' + GLADOS_MSG + '\n\n' + BILIBILI_MSG + '\n\n' + EUSERV_MSG)
+#qw360(QW360_TOKEN, WOMAIL_MSG + '\n\n' + GLADOS_MSG + '\n\n' + BILIBILI_MSG + '\n\n' + EUSERV_MSG)
+print(WOMAIL_MSG + '\n\n')
+print(GLADOS_MSG + '\n\n')
+print(BILIBILI_MSG + '\n\n')
+print(EUSERV_MSG)
 #print('沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + 'GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)
