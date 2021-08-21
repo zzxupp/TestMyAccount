@@ -160,4 +160,3 @@ def main():
 if __name__ != "__main__":
     main()
     EUSERV_MSG = '【Euserv续约】\n' + desp
-    print(EUSERV_MSG)
