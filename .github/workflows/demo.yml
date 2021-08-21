@@ -34,7 +34,7 @@ jobs:
         
     - name: Build and publish
       run: |
-        python3 pushmsg.py ${CLOUDMUSIC_PHONE} ${CLOUDMUSIC_PASSWORD}
+        python3 pushmsg.py
         #python3 bilibili.py
       env: 
         QW360_TOKEN: ${{ secrets.QW360_TOKEN }}
@@ -51,9 +51,8 @@ jobs:
         BILI_TYPE: ${{ secrets.BILI_TYPE }}
         BILI_S2C: ${{ secrets.BILI_S2C }}
         SEND_KEY: ${{ secrets.SEND_KEY }}
-        CLOUDMUSIC_PHONE: ${{ secrets.CLOUDMUSIC_PHONE }}
+        CLOUDMUSIC_USERNAME: ${{ secrets.CLOUDMUSIC_USERNAME }}
         CLOUDMUSIC_PASSWORD: ${{ secrets.CLOUDMUSIC_PASSWORD }}
-        CLOUDMUSIC_PASSWORD_PLAIN: ${{ secrets.CLOUDMUSIC_PASSWORD_PLAIN }}
         
     - name: ${{ env.CACHE_NAME }}
       uses: actions/cache@v2
