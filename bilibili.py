@@ -7,7 +7,7 @@ import json, os, random,requests,rsa, sys, time
 #from bilibiliapi import *
 #from sendNotify import *
 
-global BILIBILI_MSG
+BILIBILI_MSG = 'ZZ'
 
 #sendNotify = sendNotify()
 SEND_KEY = os.environ['SEND_KEY']
@@ -407,3 +407,4 @@ if __name__ == "__main__":
         #global BILIBILI_MSG
         BILIBILI_MSG = BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()
         print(BILIBILI_MSG)
+    print(BILIBILI_MSG)
