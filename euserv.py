@@ -123,39 +123,41 @@ def check(sess_id, session):
  
 def main():
     today = datetime.datetime.today()
-    if int(today.day) != 28:
-        EUSERV_MSG =  ''
-        exit(0)
-    if not USERNAME or not PASSWORD:
-        print("你没有添加任何账户")
-        exit(1)
-    user_list = USERNAME.strip().split()
-    passwd_list = PASSWORD.strip().split()
-    if len(user_list) != len(passwd_list):
-        log("The number of usernames and passwords do not match!")
-        exit(1)
-    for i in range(len(user_list)):
-        print('*' * 30)
-        log("正在续费第 %d 个账号" % (i + 1))
-        sessid, s = login(user_list[i], passwd_list[i])
-        if sessid == '-1':
-            log("第 %d 个账号登陆失败，请检查登录信息" % (i + 1))
-            continue
-        SERVERS = get_servers(sessid, s)
-        log("检测到第 {} 个账号有 {} 台VPS，正在尝试续期".format(i + 1, len(SERVERS)))
-        for k, v in SERVERS.items():
-            if v:
-                if not renew(sessid, s, passwd_list[i], k):
-                    log("ServerID: %s Renew Error!" % k)
+    if int(today.day) == 28:
+        if not USERNAME or not PASSWORD:
+            print("你没有添加任何账户")
+            exit(1)
+        user_list = USERNAME.strip().split()
+        passwd_list = PASSWORD.strip().split()
+        if len(user_list) != len(passwd_list):
+            log("The number of usernames and passwords do not match!")
+            exit(1)
+        for i in range(len(user_list)):
+            print('*' * 30)
+            log("正在续费第 %d 个账号" % (i + 1))
+            sessid, s = login(user_list[i], passwd_list[i])
+            if sessid == '-1':
+                log("第 %d 个账号登陆失败，请检查登录信息" % (i + 1))
+                continue
+            SERVERS = get_servers(sessid, s)
+            log("检测到第 {} 个账号有 {} 台VPS，正在尝试续期".format(i + 1, len(SERVERS)))
+            for k, v in SERVERS.items():
+                if v:
+                    if not renew(sessid, s, passwd_list[i], k):
+                        log("ServerID: %s Renew Error!" % k)
+                    else:
+                        log("ServerID: %s has been successfully renewed!" % k)
                 else:
-                    log("ServerID: %s has been successfully renewed!" % k)
-            else:
-                log("ServerID: %s does not need to be renewed" % k)
-        time.sleep(random.randint(5,15))
-        check(sessid, s)
-        time.sleep(random.randint(10,19))
-    print('*' * 30)
+                    log("ServerID: %s does not need to be renewed" % k)
+            time.sleep(random.randint(5,15))
+            check(sessid, s)
+            time.sleep(random.randint(10,19))
+        print('*' * 30)
+        desp =  '【Euserv续约】\n' + desp
+    else:
+        desp =  ''
+          
     
 if __name__ != "__main__":
     main()
-    EUSERV_MSG =  '【Euserv续约】\n' + desp
+    EUSERV_MSG = desp
