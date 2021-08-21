@@ -4,7 +4,7 @@
 from bilibiliapi import *
 #from sendNotify import *
 
-NILINILI_MSG = ''
+BILIBILI_MSG = ''
 
 #sendNotify = sendNotify()
 SEND_KEY = os.environ['SEND_KEY']
@@ -402,5 +402,5 @@ if __name__ == "__main__":
     else:
         _bilibili_cookie_list = {cookie.split('=')[0]:cookie.split('=')[-1] for cookie in BILI_COOKIE.split(';')}
 
-    NILINILI_MSG = BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()
-print(NILINILI_MSG)
+    BILIBILI_MSG = BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()
+    return BILIBILI_MSG
