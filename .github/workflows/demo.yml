@@ -46,6 +46,11 @@ jobs:
         EUSERV_PASSWORD: ${{ secrets.EUSERV_PASSWORD }}
         BILI_USER: ${{ secrets.BILI_USER }}
         BILI_PASS: ${{ secrets.BILI_PASS }}
+        BILI_COOKIE: ${{ secrets.BILI_COOKIE }}
+        BILI_NUM: ${{ secrets.BILI_NUM }}
+        BILI_TYPE: ${{ secrets.BILI_TYPE }}
+        BILI_S2C: ${{ secrets.BILI_S2C }}
+        SEND_KEY: ${{ secrets.SEND_KEY }}
 
     - name: ${{ env.CACHE_NAME }}
       uses: actions/cache@v2
