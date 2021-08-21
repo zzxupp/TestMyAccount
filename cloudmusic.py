@@ -73,7 +73,7 @@ class Encrypt:
 
 # 网易云音乐类，实现脚本基础流程
 class CloudMusic:
-    def __init__(self, phone, country_code, password):
+    def __init__(self, phone, password):
         self.session = requests.Session()
         self.enc = Encrypt()
         self.phone = phone
@@ -233,13 +233,9 @@ class CloudMusic:
 
 
 # 执行任务，传递参数，推送结果
-def run_task(info, phone, password):
-    country_code = "86"
-    if "+" in phone:
-        country_code = str(phone).split("+")[0]
-        phone = str(phone).split("+")[1]
+def run_task(phone, password):
     # 初始化
-    app = CloudMusic(phone, country_code, password)
+    app = CloudMusic(phone, password)
     # 登录
     res_login = app.login()
     print(res_login, end="\n\n")
@@ -261,28 +257,9 @@ def run_task(info, phone, password):
     print(30 * "=")
     # 推送
     message = res_login + "\n\n" + res_sign + "\n\n" + res_m_sign + "\n\n" + res_task
-    #Push(message, info).do_push()
     print(30 * "=")
-    CLOUDMUSIC_MSG += (message + '\n')
-
-
-# 执行多个任务
-def tasks_pool(infos):
-    phone_list = infos["phone"].split(",")
-    passwd_list = infos["password"].split(",")
-    # Run tasks
-    for k, v in enumerate(phone_list):
-        print(30 * "=")
-        if not passwd_list[k]:
-            break
-        if len(passwd_list[k]) == 32:
-            run_task(infos, phone_list[k], passwd_list[k])
-        else:
-            run_task(infos, phone_list[k], calc_md5(passwd_list[k]))
-
+    CLOUDMUSIC_MSG = CLOUDMUSIC_MSG + (message + '\n')
 
 if __name__ != "__main__":
-    # Get arguments
-    #tasks_pool()
-    run_task(get_args(), phone, password)
+    run_task(phone, password)
     
