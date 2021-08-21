@@ -7,17 +7,10 @@
 @VERSION :   2.6
 """
 
-import os
-import random
-import time
-import requests
-import base64
-import binascii
-import argparse
-import hashlib
+import os, random, time, requests, base64, binascii, argparse, hashlib, json
 from Crypto.Cipher import AES
-import json
 
+CLOUDMUSIC_MSG = ''
 
 # Get the arguments input.
 # 用于获取命令行参数并返回dict
@@ -72,146 +65,6 @@ def rsa_encrypt(text, pub_key, modulus):
     rs = int(text.encode("utf-8").hex(), 16) ** int(pub_key, 16) % int(modulus, 16)
     return format(rs, "x").zfill(256)
 
-
-# 推送类，包含所有推送函数
-class Push:
-    def __init__(self, text, args):
-        self.text = text
-        self.info = args
-
-    # 执行指定的推送流程
-    def do_push(self):
-        # ServerChan
-        try:
-            self.server_chan_push()
-        except Exception as err:
-            print(err)
-        # Bark
-        try:
-            self.bark_push()
-        except Exception as err:
-            print(err)
-        # Telegram
-        try:
-            self.telegram_push()
-        except Exception as err:
-            print(err)
-        # pushplus
-        try:
-            self.push_plus_push()
-        except Exception as err:
-            print(err)
-        # 企业微信
-        try:
-            self.wecom_id_push()
-        except Exception as err:
-            print(err)
-        # Qmsg
-        try:
-            self.qmsg_push()
-        except Exception as err:
-            print(err)
-        # Ding
-        try:
-            self.ding_talk_push()
-        except Exception as err:
-            print(err)
-
-    # Server Chan Turbo Push
-    def server_chan_push(self):
-        if not self.info["sc_key"]:
-            return
-        arg = self.info["sc_key"]
-        url = "https://sctapi.ftqq.com/{0}.send".format(arg[0])
-        headers = {"Content-type": "application/x-www-form-urlencoded"}
-        content = {"title": "网易云打卡", "desp": self.text}
-        ret = requests.post(url, headers=headers, data=content)
-        print("ServerChan: " + ret.text)
-
-    # Telegram Bot Push
-    def telegram_push(self):
-        if not self.info["tg_bot_key"]:
-            return
-        arg = self.info["tg_bot_key"]
-        url = "https://api.telegram.org/bot{0}/sendMessage".format(arg[0])
-        data = {
-            "chat_id": arg[1],
-            "text": self.text,
-        }
-        ret = requests.post(url, data=data)
-        print("Telegram: " + ret.text)
-
-    # Bark Push
-    def bark_push(self):
-        if not self.info["bark_key"]:
-            return
-        arg = self.info["bark_key"]
-        data = {"title": "网易云打卡", "body": self.text}
-        headers = {"Content-Type": "application/json;charset=utf-8"}
-        url = "https://api.day.app/{0}/?isArchive={1}".format(arg[0], arg[1])
-        ret = requests.post(url, json=data, headers=headers)
-        print("Bark: " + ret.text)
-
-    # PushPlus Push
-    def push_plus_push(self):
-        if not self.info["push_plus_key"]:
-            return
-        arg = self.info["push_plus_key"]
-        url = "http://www.pushplus.plus/send?token={0}&title={1}&content={2}&template={3}".format(
-            arg[0], "网易云打卡", self.text, "html"
-        )
-        ret = requests.get(url)
-        print("pushplus: " + ret.text)
-
-    # Wecom Push
-    def wecom_id_push(self):
-        if not self.info["wecom_key"]:
-            return
-        arg = self.info["wecom_key"]
-        body = {
-            "touser": "@all",
-            "msgtype": "text",
-            "agentid": arg[1],
-            "text": {"content": self.text},
-            "safe": 0,
-            "enable_id_trans": 0,
-            "enable_duplicate_check": 0,
-            "duplicate_check_interval": 1800,
-        }
-        access_token = requests.get(
-            "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={0}&corpsecret={1}".format(str(arg[0]), arg[2])
-        ).json()["access_token"]
-        res = requests.post(
-            "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={0}".format(access_token),
-            data=json.dumps(body),
-        )
-        ret = res.json()
-        if ret["errcode"] != 0:
-            print("微信推送配置错误")
-        else:
-            print("Wecom: " + ret)
-
-    # Qmsg Push
-    def qmsg_push(self):
-        if not self.info["qmsg_key"]:
-            return
-        arg = self.info["qmsg_key"]
-        url = "https://qmsg.zendee.cn/send/{0}?msg={1}".format(arg[0], self.text)
-        ret = requests.post(url)
-        print("Qmsg: " + ret.text)
-
-    # Ding Talk Push
-    def ding_talk_push(self):
-        if not self.info["ding_token"]:
-            return
-        arg = self.info["ding_token"]
-        url = "https://oapi.dingtalk.com/robot/send?access_token={0}".format(arg[0])
-        header = {"Content-Type": "application/json"}
-        data = json.dumps({"msgtype": "text", "text": {"content": "【CMLU】\n\n" + self.text}})
-        ret = requests.post(url, headers=header, data=data)
-        print("Ding: " + ret.text)
-
-
 # 加密类，实现网易云音乐前端加密流程
 class Encrypt:
     def __init__(self):
@@ -256,7 +109,7 @@ class CloudMusic:
         login_url = "https://music.163.com/weapi/login/cellphone"
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/84.0.4147.89 Safari/537.36",
+            "Chrome/86.0.4240.75 Safari/537.36 Edg/86.0.622.38",
             "Referer": "http://music.163.com/",
             "Accept-Encoding": "gzip, deflate",
             "Cookie": "os=pc; osver=Microsoft-Windows-10-Professional-build-10586-64bit; appver=2.0.3.131777; "
@@ -421,8 +274,9 @@ def run_task(info, phone, password):
     print(30 * "=")
     # 推送
     message = res_login + "\n\n" + res_sign + "\n\n" + res_m_sign + "\n\n" + res_task
-    Push(message, info).do_push()
+    #Push(message, info).do_push()
     print(30 * "=")
+    CLOUDMUSIC_MSG += (message + info + '\n')
 
 
 # 执行多个任务
@@ -443,3 +297,4 @@ def tasks_pool(infos):
 if __name__ == "__main__":
     # Get arguments
     tasks_pool(get_args())
+    
