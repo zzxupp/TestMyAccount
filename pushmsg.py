@@ -27,7 +27,7 @@ def qmsg(qmsg_key, qq, message):
     else:
         print('Qmsg酱 推送成功')
 
-msg = bilibili.main()
+msg = BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()
 
 qmsg(QMSG_KEY, QQ, msg + BILIBILI_MSG)
 qw360(QW360_TOKEN, msg)
