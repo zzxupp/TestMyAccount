@@ -159,4 +159,4 @@ def main():
     
 if __name__ != "__main__":
     main()
-    EUSERV_MSG = '【Euserv任务简报】\n' + desp + '\n'
+    EUSERV_MSG = '【Euserv任务简报】\n' + desp
