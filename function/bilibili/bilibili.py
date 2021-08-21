@@ -299,6 +299,7 @@ class BiliBiliCheckIn(object):
         uname, uid, is_login, coin, vip_type, current_exp = self.get_nav(session=session)
         # print(uname, uid, is_login, coin, vip_type, current_exp)
         if is_login:
+            print('ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ')
             manhua_msg = self.manga_sign(session=session)
             print(manhua_msg)
             manhua_book = self.manga_book(session=session)
