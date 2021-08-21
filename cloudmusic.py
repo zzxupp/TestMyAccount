@@ -81,7 +81,7 @@ class CloudMusic:
         self.nickname = ""
         self.uid = ""
         self.login_data = self.enc.encrypt(
-            json.dumps({"phone": phone, "countrycode": country_code, "password": password, "rememberLogin": "true"})
+            json.dumps({"username": phone, "password": password, "rememberLogin": "true"})
         )
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -93,7 +93,7 @@ class CloudMusic:
 
     # 登录流程
     def login(self):
-        login_url = "https://music.163.com/weapi/login/cellphone"
+        login_url = "https://music.163.com/weapi/login"
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
             "Chrome/86.0.4240.75 Safari/537.36 Edg/86.0.622.38",
