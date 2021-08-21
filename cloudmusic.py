@@ -294,7 +294,7 @@ def tasks_pool(infos):
             run_task(infos, phone_list[k], calc_md5(passwd_list[k]))
 
 
-if __name__ == "__main__":
+if __name__ != "__main__":
     # Get arguments
     tasks_pool(get_args())
     
