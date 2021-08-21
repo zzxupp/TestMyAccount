@@ -84,6 +84,8 @@ class BiliBiliCheckIn(object):
             ret = session.post(url=url + "?device=pc&platform=web", data=post_data).json()
             print('漫画看书')
             print(ret)
+            print(ret["msg"])
+            print(ret["data"])
             if ret["code"] == 0:
                 msg = "本日漫画自动阅读1章节成功！，阅读漫画为：堀与宫村"
             elif ret["msg"] == "clockin clockin is duplicate":
