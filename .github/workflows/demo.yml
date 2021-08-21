@@ -1,13 +1,13 @@
 name: AutoTest
 
-on: workflow_dispatch
-#on:
- # push:
-    #branches: main
-  #workflow_dispatch:
-  #schedule:
-    #- cron: '10 1 * * *'
-    # cron表达式，Actions时区是UTC时间，所以上午9点要往前推8个小时
+#on: workflow_dispatch
+on:
+ push:
+    branches: main
+ workflow_dispatch:
+ schedule:
+   - cron: '10 1 * * *'
+    #cron表达式，Actions时区是UTC时间，所以上午9点要往前推8个小时
 
 jobs:
   build:
@@ -16,12 +16,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: "Initialize Python"
+    - name: Initialize
       uses: actions/setup-python@v1
       with:
         python-version: 3.8
 
-    - name: Install
+    - name: Install Python3
       run: |
         sudo apt update && \
         sudo apt install python3
@@ -35,7 +35,6 @@ jobs:
     - name: Build and publish
       run: |
         python3 pushmsg.py
-        #python3 bilibili.py
       env: 
         QW360_TOKEN: ${{ secrets.QW360_TOKEN }}
         GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
@@ -57,7 +56,7 @@ jobs:
     - name: ${{ env.CACHE_NAME }}
       uses: actions/cache@v2
       env:
-        CACHE_NAME:  缓存 Pip 模块
+        CACHE_NAME:  Cache Pip black
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
