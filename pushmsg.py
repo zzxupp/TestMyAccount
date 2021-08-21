@@ -27,7 +27,8 @@ def qmsg(qmsg_key, qq, message):
     else:
         print('Qmsg酱 推送成功')
 
+msg = bilibili.main()
 
-qmsg(QMSG_KEY, QQ, NILINILI_MSG )
-qw360(QW360_TOKEN, NILINILI_MSG )   
+qmsg(QMSG_KEY, QQ, msg )
+qw360(QW360_TOKEN, msg )   
 #print('沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + 'GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)
