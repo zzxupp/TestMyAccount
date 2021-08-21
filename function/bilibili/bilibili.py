@@ -4,6 +4,8 @@
 from bilibiliapi import *
 #from sendNotify import *
 
+msg_list = []
+
 #sendNotify = sendNotify()
 SEND_KEY = os.environ['SEND_KEY']
 BILI_COOKIE = os.environ['BILI_COOKIE'].replace(" ", "")
