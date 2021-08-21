@@ -5,3 +5,4 @@ pytz
 python-dateutil
 numpy
 chardet
+pycryptodome==3.9.8
