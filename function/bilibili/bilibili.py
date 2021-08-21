@@ -69,7 +69,7 @@ class BiliBiliCheckIn(object):
         return msg
 
     @staticmethod
-    def manga_book(session, platform="web") -> dict:
+    def manga_book(session, platform=) -> dict:
         """
         模拟B站漫画看书
         """
@@ -77,13 +77,13 @@ class BiliBiliCheckIn(object):
             url = "https://manga.bilibili.com/twirp/bookshelf.v1.Bookshelf/AddHistory"
             post_data = {
                 "device": "pc",
-                "platform": platform,
+                "platform": "web"platform,
                 "comic_id": "27355",
                 "ep_id": "381662"
             }
             ret = session.post(url=url, data=post_data).json()
             print('漫画看书')
-            print(ret)
+            return ret
             print(ret["msg"])
             print(ret["data"])
             if ret["code"] == 0:
