@@ -299,26 +299,26 @@ class BiliBiliCheckIn(object):
         if is_login:
             manhua_msg = self.manga_sign(session=session)
             time.sleep(random.randint(7,19))
-            print('-----------随机暂停14s左右------------')
+            #print('-----------随机暂停14s左右------------')
             
             manhua_book = self.manga_book(session=session)
             time.sleep(random.randint(7,19))
-            print('-----------随机暂停14s左右------------') 
+           #print('-----------随机暂停14s左右------------') 
             
             live_msg = self.live_sign(session=session)
             time.sleep(random.randint(7,19))
-            print('-----------随机暂停14s左右------------')
+            #print('-----------随机暂停14s左右------------')
             
             aid_list = self.get_region(session=session)
             time.sleep(random.randint(7,19))
-            print('-----------随机暂停14s左右------------')
+            #print('-----------随机暂停14s左右------------')
             
             reward_ret = self.reward(session=session)
             # print(reward_ret) # 取消本段输出
             coins_av_count = reward_ret.get("data", {}).get("coins_av") // 10
             coin_num = coin_num - coins_av_count
             coin_num = coin_num if coin_num < coin else coin
-            print(coin_num)
+            #print(coin_num)
             if coin_type == 1 and coin_num:
                 following_list = self.get_followings(session=session, uid=uid)
                 for following in following_list.get("data", {}).get("list"):
@@ -333,22 +333,22 @@ class BiliBiliCheckIn(object):
                     ret = self.coin_add(session=session, aid=aid.get("aid"), bili_jct=bili_jct)
                     if ret["code"] == 0:
                         coin_num -= 1
-                        print(f'成功给{aid.get("title")}投一个币')
+                        #print(f'成功给{aid.get("title")}投一个币')
                         success_count += 1
                     elif ret["code"] == 34005:
-                        print(f'投币{aid.get("title")}失败，原因为{ret["message"]}')
+                        #print(f'投币{aid.get("title")}失败，原因为{ret["message"]}')
                         continue
                         # -104 硬币不够了 -111 csrf 失败 34005 投币达到上限
                     else:
-                        print(f'投币{aid.get("title")}失败，原因为{ret["message"]}，跳过投币')
+                        #print(f'投币{aid.get("title")}失败，原因为{ret["message"]}，跳过投币')
                         break
                     if coin_num <= 0:
                         break
                 coin_msg = f"今日成功投币{success_count + coins_av_count}/{coin_num}个"
-                print(coin_msg)
+                #print(coin_msg)
             else:
                 coin_msg = f"今日成功投币{coins_av_count}/{coin_type}个"
-                print(coin_msg)
+                #print(coin_msg)
             aid = aid_list[0].get("aid")
             cid = aid_list[0].get("cid")
             title = aid_list[0].get("title")
@@ -357,24 +357,24 @@ class BiliBiliCheckIn(object):
                 report_msg = f"观看《{title}》300秒"
             else:
                 report_msg = f"任务失败"
-            print(report_msg)
+            #print(report_msg)
             share_ret = self.share_task(session=session, bili_jct=bili_jct, aid=aid)
             if share_ret.get("code") == 0:
                 share_msg = f"分享《{title}》成功"
             else:
                 share_msg = f"分享失败"
-            print(share_msg)
+            #print(share_msg)
             if silver2coin:
                 silver2coin_ret = self.silver2coin(session=session, bili_jct=bili_jct)
                 if silver2coin_ret["code"] == 0:
                     silver2coin_msg = f"成功将银瓜子兑换为1个硬币"
                 else:
                     silver2coin_msg = silver2coin_ret["message"]
-                print(silver2coin_msg)
+                #print(silver2coin_msg)
             else:
                 silver2coin_msg = f"未开启银瓜子兑换硬币功能"
             time.sleep(random.randint(10,19))
-            print('-----------随机暂停14s左右------------')
+            #print('-----------随机暂停14s左右------------')
             live_stats = self.live_status(session=session)
             uname, uid, is_login, new_coin, vip_type, new_current_exp = self.get_nav(session=session)
             #print(uname, uid, is_login, new_coin, vip_type, new_current_exp)
@@ -392,25 +392,24 @@ class BiliBiliCheckIn(object):
                 f"银瓜子兑换硬币: {silver2coin_msg}\n今日获得经验: {today_exp}\n当前经验: {new_current_exp}\n"
                 f"按当前速度升级还需: {update_data}天\n{live_stats}"
             )
-            print(msg)
+            #print(msg)
             if SEND_KEY == '':
-                Print('sendNotify.send(title = u"哔哩哔哩签到",msg = msg)')
+                Print('哔哩哔哩签到')
             msg_list.append(msg)
         return msg
 
-BILIBILI_MSG = 'zz'
+BILIBILI_MSG = ''
 if __name__ != "__main__":
     # 未填写参数取消运行
     if os.environ['BILI_USER'] == "" or os.environ['BILI_PASS'] == "":
         if os.environ['BILI_COOKIE'] == "":
             print("未填写哔哩哔哩账号密码或COOKIE取消运行")
             exit(0)
-
     if BILI_COOKIE == "":
         b = Bilibili()
         login = b.login(username=os.environ['BILI_USER'], password=os.environ['BILI_PASS'])
         if login == False:
-            print('sendNotify.send(title = u"哔哩哔哩签到", msg = "登录失败 账号或密码错误，详情前往Github查看")')
+            print('登录失败 账号或密码错误，详情前往Github查看')
             exit(0)
         _bilibili_cookie_list = b.get_cookies()
     else:
