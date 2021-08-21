@@ -1,7 +1,7 @@
 import json,os,re,requests
-import womail
-import glados
-import euserv
+#import womail
+#import glados
+#import euserv
 import bilibili
 
 QW360_TOKEN = os.getenv('QW360_TOKEN')
@@ -28,6 +28,6 @@ def qmsg(qmsg_key, qq, message):
         print('Qmsg酱 推送成功')
 
 
-qmsg(QMSG_KEY, QQ, BILIBILI_MSG)
-qw360(QW360_TOKEN, BILIBILI_MSG)   
+qmsg(QMSG_KEY, QQ, NILINILI_MSG )
+qw360(QW360_TOKEN, NILINILI_MSG )   
 #print('沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + 'GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)
