@@ -13,7 +13,7 @@ EUSERV_MSG = ''
 desp = ''  # 空值
 
 def log(info: str):
-    print(info)
+    #print(info)
     global desp
     desp = desp + info + '\n'
     
