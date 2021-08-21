@@ -123,7 +123,7 @@ class WoMailCheckIn:
             msg = "登录失败"
         return msg
 
-#if __name__ == "__main__":
-_check_item = json.loads(os.getenv('WOMAIL_URL'))
-_lottery_url = 'https://club.mail.wo.cn/ActivityWeb/activity-web/index?activityId=387&typeIdentification=scratchable&resourceId=wo-wx&'
-WOMAIL_MSG = WoMailCheckIn(check_item=_check_item,lottery_url = _lottery_url).main()
+if __name__ != "__main__":
+    _check_item = json.loads(os.getenv('WOMAIL_URL'))
+    _lottery_url = 'https://club.mail.wo.cn/ActivityWeb/activity-web/index?activityId=387&typeIdentification=scratchable&resourceId=wo-wx&'
+    WOMAIL_MSG = '【womail签到】\n' + WoMailCheckIn(check_item=_check_item,lottery_url = _lottery_url).main()
