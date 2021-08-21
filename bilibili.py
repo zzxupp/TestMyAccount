@@ -1,15 +1,5 @@
 import json, os, random,requests,rsa, sys, time
-#from multiprocessing import freeze_support, Manager, Pool, Process
-#from urllib import parse
-# -*- coding: utf-8 -*-
-#import sys
-#sys.path.append("My-Actions/function/bilibili/")
-#from bilibiliapi import *
-#from sendNotify import *
 
-#BILIBILI_MSG = 'ZZ'
-
-#sendNotify = sendNotify()
 SEND_KEY = os.environ['SEND_KEY']
 BILI_COOKIE = os.environ['BILI_COOKIE'].replace(" ", "")
 
@@ -387,7 +377,7 @@ class BiliBiliCheckIn(object):
             today_exp += coins_av
             update_data = (28800 - new_current_exp) // (today_exp if today_exp else 1)
             msg = (
-                f"【Bilibili签到】\n帐号信息: {uname}\n漫画签到: {manhua_msg}\n直播签到: {live_msg}\n"
+                f"【Bilibili任务简报】\n帐号信息: {uname}\n漫画签到: {manhua_msg}\n直播签到: {live_msg}\n"
                 f"登陆任务: 今日已登陆\n观看视频: {report_msg}\n分享任务: {share_msg}\n投币任务: {coin_msg}\n"
                 f"银瓜子兑换硬币: {silver2coin_msg}\n今日获得经验: {today_exp}\n当前经验: {new_current_exp}\n"
                 f"按当前速度升级还需: {update_data}天\n{live_stats}"
