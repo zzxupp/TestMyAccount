@@ -385,8 +385,7 @@ class BiliBiliCheckIn(object):
             if SEND_KEY == '':
                 Print('sendNotify.send(title = u"哔哩哔哩签到",msg = msg)')
             msg_list.append(msg)
-        BILIBILI_MSG = msg
-        return msg_list
+        return msg
 
 
 if __name__ == "__main__":
@@ -406,5 +405,5 @@ if __name__ == "__main__":
     else:
         _bilibili_cookie_list = {cookie.split('=')[0]:cookie.split('=')[-1] for cookie in BILI_COOKIE.split(';')}
         #global BILIBILI_MSG
-        BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()
+        BILIBILI_MSG = BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()
         print(BILIBILI_MSG)
