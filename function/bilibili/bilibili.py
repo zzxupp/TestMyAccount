@@ -2,9 +2,9 @@
 #import sys
 #sys.path.append("My-Actions/function/bilibili/")
 from bilibiliapi import *
-from sendNotify import *
+#from sendNotify import *
 
-sendNotify = sendNotify()
+#sendNotify = sendNotify()
 SEND_KEY = os.environ['SEND_KEY']
 BILI_COOKIE = os.environ['BILI_COOKIE'].replace(" ", "")
 
@@ -338,7 +338,7 @@ class BiliBiliCheckIn(object):
                 silver2coin_msg = f"未开启银瓜子兑换硬币功能"
             live_stats = self.live_status(session=session)
             uname, uid, is_login, new_coin, vip_type, new_current_exp = self.get_nav(session=session)
-            # print(uname, uid, is_login, new_coin, vip_type, new_current_exp)
+            print(uname, uid, is_login, new_coin, vip_type, new_current_exp)
             reward_ret = self.reward(session=session)
             login = reward_ret.get("data", {}).get("login")
             watch_av = reward_ret.get("data", {}).get("watch_av")
@@ -355,7 +355,7 @@ class BiliBiliCheckIn(object):
             )
             print(msg)
             if SEND_KEY == '':
-                sendNotify.send(title = u"哔哩哔哩签到",msg = msg)
+                Print 'sendNotify.send(title = u"哔哩哔哩签到",msg = msg)'
             msg_list.append(msg)
         return msg_list
 
@@ -371,7 +371,7 @@ if __name__ == "__main__":
         b = Bilibili()
         login = b.login(username=os.environ['BILI_USER'], password=os.environ['BILI_PASS'])
         if login == False:
-            sendNotify.send(title = u"哔哩哔哩签到", msg = "登录失败 账号或密码错误，详情前往Github查看")
+            print 'sendNotify.send(title = u"哔哩哔哩签到", msg = "登录失败 账号或密码错误，详情前往Github查看")'
             exit(0)
         _bilibili_cookie_list = b.get_cookies()
     else:
