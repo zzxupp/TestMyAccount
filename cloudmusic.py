@@ -241,7 +241,7 @@ def run_task(username, password):
     res_task = "刷听歌量失败"
     for i in range(1):
         res_task = app.task()
-        print(res_task)
+        #print(res_task)
     #print(30 * "=")
     # 推送
     message = res_login + "\n" + res_sign + "\n" + res_m_sign + "\n" + res_task
