@@ -123,7 +123,7 @@ def check(sess_id, session):
  
 def main():
     today = datetime.datetime.today()
-    if int(today.day) == 28:
+    if int(today.day) == 17:
         if not USERNAME or not PASSWORD:
             print("你没有添加任何账户")
             exit(1)
@@ -153,11 +153,10 @@ def main():
             check(sessid, s)
             time.sleep(random.randint(10,19))
         print('*' * 30)
-        desp =  '【Euserv续约】\n' + desp
     else:
-        desp =  ''
+        desp =  '每月执行一次即可，不需要每天都续约哈！'
           
     
 if __name__ != "__main__":
     main()
-    EUSERV_MSG = desp
+    EUSERV_MSG = '【Euserv续约】\n' + desp
