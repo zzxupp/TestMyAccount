@@ -69,6 +69,31 @@ class BiliBiliCheckIn(object):
         return msg
 
     @staticmethod
+    def manga_book(session, platform="web") -> dict:
+        """
+        模拟B站漫画看书
+        """
+        try:
+            url = "https://manga.bilibili.com/twirp/bookshelf.v1.Bookshelf/AddHistory"
+            post_data = {
+                "device": "pc",
+                "platform": platform,
+                "comic_id": "27355",
+                "ep_id": "381662"
+            }
+            ret = session.post(url=url + "?device=pc&platform=web", data=post_data).json()
+            if ret["code"] == 0:
+                msg = "本日漫画自动阅读1章节成功！，阅读漫画为：堀与宫村"
+            elif ret["msg"] == "clockin clockin is duplicate":
+                msg = "今天已经签到过了"
+            else:
+                msg = f'签到失败，信息为({ret["msg"]})'
+        except Exception as e:
+            msg = f"签到异常,原因为: {str(e)}"
+       print(msg)
+        return 
+    
+    @staticmethod
     def vip_privilege_receive(session, bili_jct, receive_type: int = 1) -> dict:
         """
         领取B站大会员权益
@@ -272,6 +297,8 @@ class BiliBiliCheckIn(object):
         if is_login:
             manhua_msg = self.manga_sign(session=session)
             print(manhua_msg)
+            manhua_book = self.manga_book(session=session)
+            print(manhua_book)     
             live_msg = self.live_sign(session=session)
             print(live_msg)
             aid_list = self.get_region(session=session)
