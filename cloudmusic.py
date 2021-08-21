@@ -12,6 +12,7 @@ from Crypto.Cipher import AES
 
 CLOUDMUSIC_MSG = ''
 
+
 # Get the arguments input.
 # 用于获取命令行参数并返回dict
 def get_args():
