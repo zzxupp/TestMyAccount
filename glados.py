@@ -26,5 +26,5 @@ def main_handler(event, context):
   return start()
 
 if __name__ != '__main__':
-    GLADOS_MSG =  '【GlaDOS任务简报】\n' + start()
+    GLADOS_MSG =  '【GlaDOS任务简报】\n' + start() + '\n'
 
