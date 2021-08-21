@@ -11,8 +11,8 @@ import os, random, time, requests, base64, binascii, argparse, hashlib, json
 from Crypto.Cipher import AES
 
 CLOUDMUSIC_MSG = ''
-CLOUDMUSIC_USERNAME = os.environ['CLOUDMUSIC_USERNAME']
-CLOUDMUSIC_PASSWORD = os.environ['CLOUDMUSIC_PASSWORD']
+CLOUDMUSIC_USERNAME = os.getenv('CLOUDMUSIC_USERNAME')
+CLOUDMUSIC_PASSWORD = os.getenv('CLOUDMUSIC_PASSWORD')
 
 
 # Calculate the MD5 value of text
@@ -249,5 +249,5 @@ def run_task(username, password):
     return message
 
 if __name__ != "__main__":
-    CLOUDMUSIC_MSG = run_task('pingxuzheng@163.com', '53e77cd8fc7c1e5dba5aeab7cd1d3e52')
-    
+    #CLOUDMUSIC_MSG = run_task('pingxuzheng@163.com', '53e77cd8fc7c1e5dba5aeab7cd1d3e52')
+    CLOUDMUSIC_MSG = run_task(CLOUDMUSIC_USERNAME, CLOUDMUSIC_PASSWORD)
