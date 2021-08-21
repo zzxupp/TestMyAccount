@@ -387,8 +387,8 @@ class BiliBiliCheckIn(object):
             msg_list.append(msg)
         return msg
 
-
-if __name__ == "__main__":
+BILIBILI_MSG = 'zz'
+if __name__ != "__main__":
     # 未填写参数取消运行
     if os.environ['BILI_USER'] == "" or os.environ['BILI_PASS'] == "":
         if os.environ['BILI_COOKIE'] == "":
