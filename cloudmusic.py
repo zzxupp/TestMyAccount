@@ -11,21 +11,8 @@ import os, random, time, requests, base64, binascii, argparse, hashlib, json
 from Crypto.Cipher import AES
 
 CLOUDMUSIC_MSG = ''
-
-
-# Get the arguments input.
-# 用于获取命令行参数并返回dict
-def get_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("phone", help="Your Phone Number.")
-    parser.add_argument("password", help="The plaint text or MD5 value of the password.")
-    args = parser.parse_args()
-
-    return {
-        "phone": args.phone,
-        "password": args.password
-    }
-
+ username = os.environ['CLOUDMUSIC_USERNAME']
+ passward = os.environ['CLOUDMUSIC_PASSWORD']
 
 # Calculate the MD5 value of text
 # 计算字符串的32位小写MD5值
@@ -73,15 +60,15 @@ class Encrypt:
 
 # 网易云音乐类，实现脚本基础流程
 class CloudMusic:
-    def __init__(self, phone, password):
+    def __init__(self, username, password):
         self.session = requests.Session()
         self.enc = Encrypt()
-        self.phone = phone
+        self.username = username
         self.csrf = ""
         self.nickname = ""
         self.uid = ""
         self.login_data = self.enc.encrypt(
-            json.dumps({"username": phone, "password": password, "rememberLogin": "true"})
+            json.dumps({"username": username, "password": password, "rememberLogin": "true"})
         )
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -116,7 +103,7 @@ class CloudMusic:
                 days=level["nextLoginCount"] - level["nowLoginCount"],
             )
         else:
-            text = "账号 {0} 登录失败: ".format(self.phone) + str(ret["code"])
+            text = "账号 {0} 登录失败: ".format(self.username) + str(ret["code"])
         return text
 
     # Get the level of account.
@@ -233,9 +220,9 @@ class CloudMusic:
 
 
 # 执行任务，传递参数，推送结果
-def run_task(phone, password):
+def run_task(username, password):
     # 初始化
-    app = CloudMusic(phone, password)
+    app = CloudMusic(username, password)
     # 登录
     res_login = app.login()
     print(res_login, end="\n\n")
@@ -261,5 +248,5 @@ def run_task(phone, password):
     return message
 
 if __name__ != "__main__":
-    CLOUDMUSIC_MSG = run_task('pingxuzheng@163.com', '53e77cd8fc7c1e5dba5aeab7cd1d3e52')
+    CLOUDMUSIC_MSG = run_task(username, password)
     
