@@ -1,4 +1,4 @@
-import os,re,json,time,requests,datetime
+import os,re,json,time,requests,datetime,random
 from bs4 import BeautifulSoup
 
 USERNAME = os.environ["EUSERV_USERNAME"]
@@ -106,7 +106,7 @@ def renew(sess_id, session, password, order_id) -> bool:
         "token": token
     }
     session.post(url, headers=headers, data=data)
-    time.sleep(5)
+    time.sleep(random.randint(5,9))
     return True
 
 
@@ -122,6 +122,10 @@ def check(sess_id, session):
         log("ALL Work Done! Enjoy")
  
 def main():
+    today = datetime.datetime.today()
+    if today.day != 28:
+        EUSERV_MSG =  ''
+        exit(1)
     if not USERNAME or not PASSWORD:
         print("你没有添加任何账户")
         exit(1)
@@ -147,11 +151,11 @@ def main():
                     log("ServerID: %s has been successfully renewed!" % k)
             else:
                 log("ServerID: %s does not need to be renewed" % k)
-        time.sleep(15)
+        time.sleep(random.randint(5,15))
         check(sessid, s)
-        time.sleep(5)
+        time.sleep(random.randint(10,19))
     print('*' * 30)
     
-#if __name__ == "__main__":
-main()
-EUSERV_MSG = desp
+if __name__ != "__main__":
+    main()
+    EUSERV_MSG =  '【Euserv续约】\n' + desp
