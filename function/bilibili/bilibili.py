@@ -4,7 +4,7 @@ sys.path.append("My-Actions/function/bilibili/")
 from bilibiliapi import *
 #from sendNotify import *
 
-msg_list = []
+NILINILI_MSG = ''
 
 #sendNotify = sendNotify()
 SEND_KEY = os.environ['SEND_KEY']
@@ -354,7 +354,6 @@ class BiliBiliCheckIn(object):
             print(share_msg)
             if silver2coin:
                 silver2coin_ret = self.silver2coin(session=session, bili_jct=bili_jct)
-                print(silver2coin_ret)
                 if silver2coin_ret["code"] == 0:
                     silver2coin_msg = f"成功将银瓜子兑换为1个硬币"
                 else:
@@ -403,5 +402,5 @@ if __name__ == "__main__":
     else:
         _bilibili_cookie_list = {cookie.split('=')[0]:cookie.split('=')[-1] for cookie in BILI_COOKIE.split(';')}
 
-    BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()
-print(msg_list)
+    NILINILI_MSG = BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()
+print(NILINILI_MSG)
