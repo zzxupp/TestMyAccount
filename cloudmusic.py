@@ -97,7 +97,7 @@ class CloudMusic:
             self.nickname = ret["profile"]["nickname"]
             self.uid = ret["account"]["id"]
             level = self.get_level()
-            text = '"{nickname}" 登录成功，当前等级：{level}\n\n距离升级还需听{count}首歌\n\n距离升级还需登录{days}天'.format(
+            text = '"{nickname}" 登录成功，当前等级：{level}\n距离升级还需听{count}首歌\n距离升级还需登录{days}天'.format(
                 nickname=self.nickname,
                 level=level["level"],
                 count=level["nextPlayCount"] - level["nowPlayCount"],
@@ -244,9 +244,9 @@ def run_task(username, password):
         print(res_task)
     #print(30 * "=")
     # 推送
-    message = res_login + "\n\n" + res_sign + "\n\n" + res_m_sign + "\n\n" + res_task
+    message = res_login + "\n" + res_sign + "\n" + res_m_sign + "\n" + res_task
     #print(30 * "=")
     return message
 
 if __name__ != "__main__":
-    CLOUDMUSIC_MSG = run_task(CLOUDMUSIC_USERNAME, CLOUDMUSIC_PASSWORD)
+    CLOUDMUSIC_MSG = '【CloudMusic任务简报】\n' + run_task(CLOUDMUSIC_USERNAME, CLOUDMUSIC_PASSWORD)
