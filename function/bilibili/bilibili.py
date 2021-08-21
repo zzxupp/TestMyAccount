@@ -1,7 +1,24 @@
+import base64
+import chardet
+import functools
+import hashlib
+import json
+import os
+import platform
+import random
+import requests
+import rsa
+import shutil
+import subprocess
+import sys
+import threading
+import time
+from multiprocessing import freeze_support, Manager, Pool, Process
+from urllib import parse
 # -*- coding: utf-8 -*-
 #import sys
 #sys.path.append("My-Actions/function/bilibili/")
-from bilibiliapi import *
+#from bilibiliapi import *
 #from sendNotify import *
 
 BILIBILI_MSG = ''
