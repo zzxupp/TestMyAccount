@@ -226,28 +226,27 @@ def run_task(username, password):
     app = CloudMusic(username, password)
     # 登录
     res_login = app.login()
-    print(res_login, end="\n\n")
+    #print(res_login, end="\n\n")
     if "400" in res_login:
         print(res_login)
         print(30 * "=")
         return
     # PC/Web端签到
     res_sign = app.sign()
-    print(res_sign, end="\n\n")
+    #print(res_sign, end="\n\n")
     # 安卓端签到
     res_m_sign = app.sign(1)
-    print(res_m_sign, end="\n\n")
+    #print(res_m_sign, end="\n\n")
     # Music Task
     res_task = "刷听歌量失败"
     for i in range(1):
         res_task = app.task()
         print(res_task)
-    print(30 * "=")
+    #print(30 * "=")
     # 推送
     message = res_login + "\n\n" + res_sign + "\n\n" + res_m_sign + "\n\n" + res_task
-    print(30 * "=")
+    #print(30 * "=")
     return message
 
 if __name__ != "__main__":
-    #CLOUDMUSIC_MSG = run_task('pingxuzheng@163.com', '53e77cd8fc7c1e5dba5aeab7cd1d3e52')
     CLOUDMUSIC_MSG = run_task(CLOUDMUSIC_USERNAME, CLOUDMUSIC_PASSWORD)
