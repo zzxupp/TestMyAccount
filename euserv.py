@@ -1,4 +1,4 @@
-import os,re,json,time,requests,datetime,random
+import os,re,json,requests,datetime,random
 from bs4 import BeautifulSoup
 
 USERNAME = os.environ["EUSERV_USERNAME"]
@@ -123,7 +123,7 @@ def check(sess_id, session):
  
 def main():
     today = datetime.datetime.today()
-    if today.day != 28:
+    if int(today.day) != 28:
         EUSERV_MSG =  ''
         exit(1)
     if not USERNAME or not PASSWORD:
