@@ -154,9 +154,10 @@ def main():
             time.sleep(random.randint(10,19))
         print('*' * 30)
     else:
-        desp =  '每月执行一次即可，不需要每天都续约哈！'
+        desp = '每月执行一次即可，不需要每天都续约哈！'
           
     
 if __name__ != "__main__":
     main()
     EUSERV_MSG = '【Euserv续约】\n' + desp
+    print(EUSERV_MSG)
