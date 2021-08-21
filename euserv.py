@@ -1,4 +1,4 @@
-import os,re,json,requests,datetime,random
+import os,re,json,requests,time,datetime,random
 from bs4 import BeautifulSoup
 
 USERNAME = os.environ["EUSERV_USERNAME"]
