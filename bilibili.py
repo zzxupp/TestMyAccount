@@ -4,7 +4,7 @@
 from bilibiliapi import *
 #from sendNotify import *
 
-#BILIBILI_MSG = ''
+BILIBILI_MSG = ''
 
 #sendNotify = sendNotify()
 SEND_KEY = os.environ['SEND_KEY']
@@ -382,7 +382,7 @@ class BiliBiliCheckIn(object):
             if SEND_KEY == '':
                 Print('sendNotify.send(title = u"哔哩哔哩签到",msg = msg)')
             msg_list.append(msg)
-        return msg
+        return msg_list
 
 
 if __name__ == "__main__":
@@ -401,4 +401,4 @@ if __name__ == "__main__":
         _bilibili_cookie_list = b.get_cookies()
     else:
         _bilibili_cookie_list = {cookie.split('=')[0]:cookie.split('=')[-1] for cookie in BILI_COOKIE.split(';')}
-        BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()
+        BILIBILI_MSG = BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()
