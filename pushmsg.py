@@ -1,5 +1,9 @@
 import json,os,re,requests
 
+from womail import WOMAIL_MSG
+from glados import GLADOS_MSG
+from euserv import EUSERV_MSG
+from bilibili import BILIBILI_MSG
 from cloudmusic import CLOUDMUSIC_MSG
 
 QW360_TOKEN = os.getenv('QW360_TOKEN')
@@ -25,10 +29,10 @@ def qmsg(qmsg_key, qq, message):
     else:
         print('Qmsg酱 推送成功')
 
-#qmsg(QMSG_KEY, QQ, WOMAIL_MSG + '\n\n' + GLADOS_MSG + '\n\n' + BILIBILI_MSG + '\n\n' + EUSERV_MSG + '\n\n' + CLOUDMUSIC_PASSWORD_PLAIN)
-#qw360(QW360_TOKEN, WOMAIL_MSG + '\n\n' + GLADOS_MSG + '\n\n' + BILIBILI_MSG + '\n\n' + EUSERV_MSG + '\n\n' + CLOUDMUSIC_PASSWORD_PLAIN)
+qmsg(QMSG_KEY, QQ, WOMAIL_MSG + '\n\n' + GLADOS_MSG + '\n\n' + BILIBILI_MSG + '\n\n' + EUSERV_MSG + '\n\n' + CLOUDMUSIC_MSG)
+qw360(QW360_TOKEN, WOMAIL_MSG + '\n\n' + GLADOS_MSG + '\n\n' + BILIBILI_MSG + '\n\n' + EUSERV_MSG + '\n\n' + CLOUDMUSIC_MSG)
 #print(WOMAIL_MSG + '\n')
 #print(GLADOS_MSG + '\n')
 #print(BILIBILI_MSG + '\n')
-print(CLOUDMUSIC_PASSWORD_PLAIN)
+#print(CLOUDMUSIC_MSG)
 #print('沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + 'GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)
