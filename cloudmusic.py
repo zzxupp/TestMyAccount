@@ -277,7 +277,7 @@ def run_task(info, phone, password):
     message = res_login + "\n\n" + res_sign + "\n\n" + res_m_sign + "\n\n" + res_task
     #Push(message, info).do_push()
     print(30 * "=")
-    CLOUDMUSIC_MSG += (message + info + '\n')
+    CLOUDMUSIC_MSG += (message + '\n')
 
 
 # 执行多个任务
