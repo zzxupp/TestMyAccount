@@ -7,7 +7,7 @@ import json, os, random,requests,rsa, sys, time
 #from bilibiliapi import *
 #from sendNotify import *
 
-BILIBILI_MSG = 'ZZ'
+#BILIBILI_MSG = 'ZZ'
 
 #sendNotify = sendNotify()
 SEND_KEY = os.environ['SEND_KEY']
