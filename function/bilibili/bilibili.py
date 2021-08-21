@@ -82,19 +82,13 @@ class BiliBiliCheckIn(object):
                 "ep_id": "381662"
             }
             ret = session.post(url=url, data=post_data).json()
-            return ret
-            print(ret["msg"])
-            print(ret["data"])
             if ret["code"] == 0:
                 msg = "本日漫画自动阅读1章节成功！，阅读漫画为：堀与宫村"
-            elif ret["msg"] == "clockin clockin is duplicate":
-                msg = "今天已经签到过了"
             else:
-                msg = f'签到失败，信息为({ret["msg"]})'
+                msg = f'出错，信息为({ret["msg"]})'
         except Exception as e:
-            msg = f"签到异常,原因为: {str(e)}"
-        print(msg)
-        return 
+            msg = f"看书异常,原因为: {str(e)}"
+        return msg
     
     @staticmethod
     def vip_privilege_receive(session, bili_jct, receive_type: int = 1) -> dict:
@@ -298,7 +292,6 @@ class BiliBiliCheckIn(object):
         uname, uid, is_login, coin, vip_type, current_exp = self.get_nav(session=session)
         # print(uname, uid, is_login, coin, vip_type, current_exp)
         if is_login:
-            print('ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ')
             manhua_msg = self.manga_sign(session=session)
             print(manhua_msg)
             manhua_book = self.manga_book(session=session)
@@ -369,7 +362,7 @@ class BiliBiliCheckIn(object):
                 silver2coin_msg = f"未开启银瓜子兑换硬币功能"
             live_stats = self.live_status(session=session)
             uname, uid, is_login, new_coin, vip_type, new_current_exp = self.get_nav(session=session)
-            print(uname, uid, is_login, new_coin, vip_type, new_current_exp)
+            #print(uname, uid, is_login, new_coin, vip_type, new_current_exp)
             reward_ret = self.reward(session=session)
             login = reward_ret.get("data", {}).get("login")
             watch_av = reward_ret.get("data", {}).get("watch_av")
@@ -409,3 +402,4 @@ if __name__ == "__main__":
         _bilibili_cookie_list = {cookie.split('=')[0]:cookie.split('=')[-1] for cookie in BILI_COOKIE.split(';')}
 
     BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()
+print(msg_list)
