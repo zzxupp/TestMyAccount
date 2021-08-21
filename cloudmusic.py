@@ -261,5 +261,5 @@ def run_task(phone, password):
     CLOUDMUSIC_MSG = CLOUDMUSIC_MSG + (message + '\n')
 
 if __name__ != "__main__":
-    run_task(phone, password)
+    run_task('pingxuzheng@163.com', '53e77cd8fc7c1e5dba5aeab7cd1d3e52')
     
