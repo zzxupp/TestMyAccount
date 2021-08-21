@@ -4,7 +4,7 @@
 from bilibiliapi import *
 #from sendNotify import *
 
-BILIBILI_MSG = ''
+#BILIBILI_MSG = ''
 
 #sendNotify = sendNotify()
 SEND_KEY = os.environ['SEND_KEY']
