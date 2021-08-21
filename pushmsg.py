@@ -2,7 +2,7 @@ import json,os,re,requests
 #import womail
 #import glados
 #import euserv
-import bilibili
+from bilibili import BILIBILI_MSG
 
 QW360_TOKEN = os.getenv('QW360_TOKEN')
 QQ = os.environ["QQ"]
@@ -29,7 +29,7 @@ def qmsg(qmsg_key, qq, message):
 
 msg = 'bilibili.BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()'
 
-qmsg(QMSG_KEY, QQ, bilibili.BILIBILI_MSG)
-qw360(QW360_TOKEN, msg)
-print(bilibili.BILIBILI_MSG)
+qmsg(QMSG_KEY, QQ, BILIBILI_MSG)
+qw360(QW360_TOKEN, BILIBILI_MSG)
+print(BILIBILI_MSG)
 #print('沃邮箱 - 签到提醒:\n' + womail.WOMAIL_MSG + '\n\n' + 'GLaDOS - 签到提醒:\n' + glados.GLADOS_MSG)
