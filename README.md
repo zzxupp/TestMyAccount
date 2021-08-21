@@ -2,6 +2,8 @@
 There are something to test by myself
 
 ## Thanks
+[MayoBlueSky/My-Actions at master](https://github.com/MayoBlueSky/My-Actions/tree/master)
+
 [secriy/CloudMusic-LevelUp](https://github.com/secriy/CloudMusic-LevelUp)   
 [ZainCheung/netease-cloud-api](https://github.com/ZainCheung/netease-cloud-api)   
 
