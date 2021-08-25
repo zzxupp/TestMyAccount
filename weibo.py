@@ -1,15 +1,11 @@
 from urllib.parse import urlparse
-import requests
-import time
-import push
-import re
-import os
+import requests,time,push,re,os
 ''' 是否使用推送？
     0: 不使用
     1: 企业微信
     2: 待定
 '''
-push_type = '1'
+push_type = '0'
 
 
 
@@ -131,8 +127,8 @@ def chaohua_checkin(Cookie, item):
 
 
 def start():
-    Cookie1 = 'SUB=' + os.environ['sub1']
-    Cookie2 = 'SUB=' + os.environ['sub2']
+    Cookie1 = 'SUB=' + os.environ['SUBM']
+    Cookie2 = 'SUB=' + os.environ['SUBP']
     # 获取超话列表
     chaohua_list = get_chaohua_List(Cookie1)
     print(chaohua_list)
