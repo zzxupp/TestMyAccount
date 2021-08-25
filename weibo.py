@@ -157,3 +157,6 @@ def start():
 
 def main(event,context):
     return start()
+
+if __name__ == "__main__":
+    start()
