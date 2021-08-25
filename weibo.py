@@ -1,5 +1,5 @@
 from urllib.parse import urlparse
-import requests,time,push,re,os
+import requests,time,re,os
 ''' 是否使用推送？
     0: 不使用
     1: 企业微信
