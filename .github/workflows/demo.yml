@@ -34,7 +34,7 @@ jobs:
         
     - name: Build and publish
       run: |
-        python3 pushmsg.py
+        python3 weibo.py
       env: 
         QW360_TOKEN: ${{ secrets.QW360_TOKEN }}
         GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
@@ -52,6 +52,8 @@ jobs:
         SEND_KEY: ${{ secrets.SEND_KEY }}
         CLOUDMUSIC_USERNAME: ${{ secrets.CLOUDMUSIC_USERNAME }}
         CLOUDMUSIC_PASSWORD: ${{ secrets.CLOUDMUSIC_PASSWORD }}
+        SUBM: ${{ secrets.SUBM }}
+        SUBP: ${{ secrets.SUBP }}
         
     - name: ${{ env.CACHE_NAME }}
       uses: actions/cache@v2
