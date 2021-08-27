@@ -130,11 +130,11 @@ def start():
     Cookie1 = 'SUB=' + os.getenv('SUBM')
     Cookie2 = 'SUB=' + os.getenv('SUBP')
     # 获取超话列表
-    chaohua_list = get_chaohua_List(Cookie2)
+    chaohua_list = get_chaohua_List('_2A25MLPkLDeRhGeRN41QZ9ivJzT6IHXVvWG3DrDV8PUNbmtAfLRmnkW9NU4Ba1GcG7y7caBz88LvaQJrLyQthm5pM')
     print(chaohua_list)
     msg_list = []
     for item in chaohua_list:
-        msg = chaohua_checkin(Cookie2, item)
+        msg = chaohua_checkin('_2A25MLPkLDeRhGeRN41QZ9ivJzT6IHXVvWG3DrDV8PUNbmtAfLRmnkW9NU4Ba1GcG7y7caBz88LvaQJrLyQthm5pM', item)
         msg_list.append(msg)
         time.sleep(15)
     if push_type == '1':
