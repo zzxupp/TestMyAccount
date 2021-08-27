@@ -95,10 +95,14 @@ def chaohua_checkin(Cookie, item):
     # 超话签到地址
     url = 'https://weibo.com/p/aj/general/button'
     headers = {
-        'cookie': Cookie,
-        'user-Agent': ua,
-        'Referer': 'https://weibo.com/p/' + item['id'] + '/super_index',
-        'sec-ch-ua': '"Not;A Brand";v="99", "Microsoft Edge";v="91", "Chromium";v="91"'
+        'cookie':
+        Cookie,
+        'user-Agent':
+        ua,
+        'Referer':
+        'https://weibo.com/p/' + item['id'] + '/super_index',
+        'sec-ch-ua':
+        '"Not;A Brand";v="99", "Microsoft Edge";v="91", "Chromium";v="91"'
     }
     response = requests.get(url, headers=headers, params=data)
     respJson = response.json()
@@ -124,15 +128,13 @@ def chaohua_checkin(Cookie, item):
 
 def start():
     #Cookie1 = 'SUB=' + os.environ['SUBM']
-    #Cookie2 = 'SUB=' + os.environ['SUBP']
-    Cookie1 = 'SUB=' + os.getenv('SUBP')
+    Cookie2 = 'SUB=' + os.environ['SUBP']
     # 获取超话列表
-    chaohua_list = get_chaohua_List(Cookie1)
+    chaohua_list = get_chaohua_List(Cookie2)
     print(chaohua_list)
     msg_list = []
     for item in chaohua_list:
-        #msg = chaohua_checkin(Cookie1, item)
-        msg = chaohua_checkin(Cookie1, item)
+        msg = chaohua_checkin(Cookie2, item)
         msg_list.append(msg)
         time.sleep(15)
     if push_type == '1':
