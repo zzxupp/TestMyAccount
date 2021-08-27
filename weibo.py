@@ -127,8 +127,8 @@ def chaohua_checkin(Cookie, item):
 
 
 def start():
-    Cookie1 = 'SUB=' + os.getenv('SUBM')
-    Cookie2 = 'SUB=' + os.getenv('SUBP')
+    Cookie1 = 'SUB=' + os.environ['SUBM']
+    Cookie2 = 'SUB=' + os.environ['SUBP']
     # 获取超话列表
     chaohua_list = get_chaohua_List(Cookie1)
     print(chaohua_list)
