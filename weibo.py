@@ -134,7 +134,7 @@ def start():
     print(chaohua_list)
     msg_list = []
     for item in chaohua_list:
-        msg = chaohua_checkin(Cookie2, item)
+        msg = chaohua_checkin(Cookie1, item)
         msg_list.append(msg)
         time.sleep(15)
     if push_type == '1':
