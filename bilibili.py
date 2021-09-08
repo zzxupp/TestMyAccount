@@ -112,7 +112,8 @@ class BiliBiliCheckIn(object):
         progres int 观看秒数
         """
         url = "http://api.bilibili.com/x/v2/history/report"
-        post_data = {"aid": aid, "cid": cid, "progres": progres, "csrf": bili_jct}
+        progres2 = progres + random.randint(0,59)
+        post_data = {"aid": aid, "cid": cid, "progres": progres2, "csrf": bili_jct}
         ret = session.post(url=url, data=post_data).json()
         return ret
 
@@ -344,7 +345,7 @@ class BiliBiliCheckIn(object):
             title = aid_list[0].get("title")
             report_ret = self.report_task(session=session, bili_jct=bili_jct, aid=aid, cid=cid)
             if report_ret.get("code") == 0:
-                report_msg = f"观看《{title}》300秒"
+                report_msg = f"观看《{title}》300+秒"
             else:
                 report_msg = f"任务失败"
             #print(report_msg)
