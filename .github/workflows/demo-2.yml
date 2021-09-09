@@ -1,0 +1,67 @@
+name: AutoTest
+
+#on: workflow_dispatch
+on:
+ push:
+    branches: main
+ workflow_dispatch:
+ schedule:
+   - cron: '10 19 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Initialize
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+
+    - name: Install Python3
+      run: |
+        sudo apt update && \
+        sudo apt install python3
+      
+    - name: requirements
+      run: |
+        pip3 install -r requirements.txt
+        python -m pip install --upgrade requests
+        python -m pip install --upgrade beautifulsoup4
+        
+    - name: Build and publish
+      run: |
+        python3 pushmsg.py
+        python3 weibo.py
+      env: 
+        QW360_TOKEN: ${{ secrets.QW360_TOKEN }}
+        GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
+        QQ: ${{ secrets.QQ }}
+        QMSG_KEY: ${{ secrets.QMSG_KEY }}
+        WOMAIL_URL: ${{ secrets.WOMAIL_URL }}
+        EUSERV_USERNAME: ${{ secrets.EUSERV_USERNAME }}
+        EUSERV_PASSWORD: ${{ secrets.EUSERV_PASSWORD }}
+        BILI_USER: ${{ secrets.BILI_USER }}
+        BILI_PASS: ${{ secrets.BILI_PASS }}
+        BILI_COOKIE: ${{ secrets.BILI_COOKIE }}
+        BILI_NUM: ${{ secrets.BILI_NUM }}
+        BILI_TYPE: ${{ secrets.BILI_TYPE }}
+        BILI_S2C: ${{ secrets.BILI_S2C }}
+        SEND_KEY: ${{ secrets.SEND_KEY }}
+        CLOUDMUSIC_USERNAME: ${{ secrets.CLOUDMUSIC_USERNAME }}
+        CLOUDMUSIC_PASSWORD: ${{ secrets.CLOUDMUSIC_PASSWORD }}
+        SUBM: ${{ secrets.SUBM }}
+        SUBP: ${{ secrets.SUBP }}
+        
+    - name: ${{ env.CACHE_NAME }}
+      uses: actions/cache@v2
+      env:
+        CACHE_NAME:  Cache Pip black
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          ${{ runner.os }}-
