@@ -56,9 +56,9 @@ def readcredits(token, sign):
 
     
 def main():
-    _user_id = os.getenv('USERID')
-    _token = os.getenv('TOKEN')
-    _sign = os.getenv('SIGN')
+    _user_id = os.getenv('JEGOTRIP_USERID')
+    _token = os.getenv('JEGOTRIP_TOKEN')
+    _sign = os.getenv('JEGOTRIP_SIGN')
     checkin_state = ''
     cli = JegoTrip(_user_id)
     for task in cli.task().get('日常任务', []):
