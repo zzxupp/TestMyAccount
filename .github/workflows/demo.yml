@@ -1,9 +1,7 @@
-name: AutoTest1
+name: AutoTest2
 
 #on: workflow_dispatch
 on:
- push:
-    branches: main
  workflow_dispatch:
  schedule:
    - cron: '10 3 * * */2'
