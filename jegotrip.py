@@ -1,7 +1,6 @@
 import requests
 import pprint
 import os
-import urllib.parse
 
 JEGOTRIP_MSG = ''
 
@@ -73,10 +72,10 @@ def main():
                     #print('签到成功!' if cli.verify_result() else '签到失败:未知')
             elif task.get('triggerAction') == '已签到':
                 checkin_state = '今日已签到!'
-    return {f"{checkin_state}'，当前无忧币的总数：'{readcredits(_token,_sign)}"}
+    return f"{checkin_state}'，当前无忧币的总数：'{readcredits(_token,_sign)}"}
     #print(JEGOTRIP_MSG)
     #return JEGOTRIP_MSG
 
-if __name__ == '__main__':
-    JEGOTRIP_MSG = main()
-    print(JEGOTRIP_MSG)
+if __name__ != '__main__':
+    JEGOTRIP_MSG = '【Jegotrip任务简报】\n' + main()
+    #print(JEGOTRIP_MSG)
