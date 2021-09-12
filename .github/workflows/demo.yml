@@ -1,4 +1,4 @@
-name: AutoTest
+name: AutoTest1
 
 #on: workflow_dispatch
 on:
