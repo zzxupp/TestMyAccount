@@ -76,6 +76,6 @@ def main():
     #print(JEGOTRIP_MSG)
     #return JEGOTRIP_MSG
 
-if __name__ != '__main__':
+if __name__ == '__main__':
     JEGOTRIP_MSG = {f"【Jegotrip任务简报】\n{main()}"}
-    #print(JEGOTRIP_MSG)
+    print(JEGOTRIP_MSG)
