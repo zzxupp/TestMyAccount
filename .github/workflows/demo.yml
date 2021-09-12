@@ -31,8 +31,9 @@ jobs:
         
     - name: Build and publish
       run: |
-        python3 pushmsg.py
-        python3 weibo.py
+        #python3 pushmsg.py
+        #python3 weibo.py
+        python jegotrip.py
       env: 
         QW360_TOKEN: ${{ secrets.QW360_TOKEN }}
         GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
@@ -55,6 +56,7 @@ jobs:
         JEGOTRIP_SIGN: ${{ secrets.JEGOTRIP_SIGN }}
         JEGOTRIP_TOKEN: ${{ secrets.JEGOTRIP_TOKEN }}
         JEGOTRIP_USERID: ${{ secrets.JEGOTRIP_USERID }}
+        
     - name: ${{ env.CACHE_NAME }}
       uses: actions/cache@v2
       env:
