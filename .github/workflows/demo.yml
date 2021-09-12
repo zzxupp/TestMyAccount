@@ -54,7 +54,9 @@ jobs:
         CLOUDMUSIC_PASSWORD: ${{ secrets.CLOUDMUSIC_PASSWORD }}
         SUBM: ${{ secrets.SUBM }}
         SUBP: ${{ secrets.SUBP }}
-        
+        JEGOTRIP_SIGN: ${{ secrets.JEGOTRIP_SIGN }}
+        JEGOTRIP_TOKEN: ${{ secrets.JEGOTRIP_TOKEN }}
+        JEGOTRIP_USERID: ${{ secrets.JEGOTRIP_USERID }}
     - name: ${{ env.CACHE_NAME }}
       uses: actions/cache@v2
       env:
