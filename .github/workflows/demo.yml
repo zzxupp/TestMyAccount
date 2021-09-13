@@ -1,11 +1,12 @@
-name: AutoTest1
+name: AutoTest
 
 #on: workflow_dispatch
 on:
  workflow_dispatch:
  schedule:
-   - cron: '37 1 * * 1,3,5'
-   - cron: '30 14 * * 1,3,5'
+   - cron: '31 3 * * */5'
+   - cron: '17 10 * * 2,4,6'
+   - cron: '44 1 * * 1,3'
 
 jobs:
   build:
