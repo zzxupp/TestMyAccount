@@ -76,7 +76,8 @@ def readcredits(token, sign):
     resqlist = _logonFreeUrl.split("&")
     resqchar = resqlist[2]
     pprint.pprint(resqchar)
-    return "resqchar.split("=")[1]"
+    #return resqchar.split("=")[1]
+    return 1
 
     
 def main():
