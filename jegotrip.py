@@ -1,7 +1,6 @@
 import requests
 import pprint
 import os
-import time
 
 JEGOTRIP_MSG = ''
 
@@ -70,17 +69,14 @@ def getCoins():
         return 'zzzz'
 
 def readcredits(token, sign):
-    timestampf = time.time()
-    timestamp = int(round(timestampf * 1000))
-    resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token=6d8b7e4204764e6cb953d8a859926007&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp={timestamp}&sign=6b59c1e812658c41f3f38099850ecf2346fdae73')
+    resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token={token}&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp=1631805453942&sign={sign}')
     data = resp.json()
     pprint.pprint(data)
-    #_logonFreeUrl = data['body']['logonFreeUrl']
-    #resqlist = _logonFreeUrl.split("&")
-    #resqchar = resqlist[2]
-    #pprint.pprint(resqchar)
-    #return resqchar.split("=")[1]
-    return 'zzz'
+    _logonFreeUrl = data['body']['logonFreeUrl']
+    resqlist = _logonFreeUrl.split("&")
+    resqchar = resqlist[2]
+    pprint.pprint(resqchar)
+    return resqchar.split("=")[1]
 
     
 def main():
