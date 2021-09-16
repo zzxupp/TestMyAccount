@@ -96,10 +96,8 @@ def main():
                     #print('签到成功!' if cli.verify_result() else '签到失败:未知')
             elif task.get('triggerAction') == '已签到':
                 checkin_state = '今日已签到!'
-    readcredits()
-    return f"{checkin_state}，当前无忧币的总数："
+    return f"{checkin_state}，当前无忧币的总数：{readcredits()}"
     #print(JEGOTRIP_MSG)
 
-if __name__ == '__main__':
-    main()
-    #JEGOTRIP_MSG = f"【Jegotrip任务简报】\n{main()}"
+if __name__ != '__main__':
+    JEGOTRIP_MSG = f"【Jegotrip任务简报】\n{main()}"
