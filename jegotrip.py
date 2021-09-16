@@ -38,7 +38,7 @@ class JegoTrip():
         #pprint.pprint(data)
         return data['result']
 
-    def getCoins(self, token) -> bool:
+def getCoins(token):
         resp = requests.post('http://task.jegotrip.com.cn/api/service/user/v1/getUserTripCoins',
                              json={
                                  'lang': 'zh_CN',
@@ -60,7 +60,7 @@ class JegoTrip():
                              })
         data = resp.json()
         pprint.pprint(data)
-        return data['body']
+        return 1
     
     def verify_result(self):
         tasks = self.task()
@@ -100,4 +100,5 @@ def main():
     #print(JEGOTRIP_MSG)
 
 if __name__ == '__main__':
-    JEGOTRIP_MSG = f"【Jegotrip任务简报】\n{main()}"
+    main()
+    #JEGOTRIP_MSG = f"【Jegotrip任务简报】\n{main()}"
