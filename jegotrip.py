@@ -65,17 +65,17 @@ def getCoins():
                                  'Referer': 'https://app.jegotrip.com.cn/wyx/appwap/tripcoins/coinsHistory.html?token=6d8b7e4204764e6cb953d8a859926007&from=app'
                              })
         data = resp.json()
-        pprint.pprint(data)
+        #pprint.pprint(data)
         return 'zzzz'
 
 def readcredits():
     resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token=6d8b7e4204764e6cb953d8a859926007&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp=1631805453942&sign=6b59c1e812658c41f3f38099850ecf2346fdae73')
     data = resp.json()
-    pprint.pprint(data)
+    #pprint.pprint(data)
     _logonFreeUrl = data['body']['logonFreeUrl']
     resqlist = _logonFreeUrl.split("&")
     resqchar = resqlist[2]
-    pprint.pprint(resqchar)
+    #pprint.pprint(resqchar)
     return resqchar.split("=")[1]
 
     
