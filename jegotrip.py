@@ -44,8 +44,8 @@ class JegoTrip():
             if task.get('name') == '每日签到奖励':
                 return True if task.get('triggerAction') == '已签到' else False
 
-def getCoins(token):
-        resp = requests.post('http://task.jegotrip.com.cn/api/service/user/v1/getUserTripCoins?lang=zh_CN&token={token}',
+def getCoins():
+        resp = requests.post('http://task.jegotrip.com.cn/api/service/user/v1/getUserTripCoins?lang=zh_CN&token=6d8b7e4204764e6cb953d8a859926007',
                              json={
                                  'page': '1',
                                  'pageSize': '30'    # 此处`I`要大写
@@ -62,7 +62,7 @@ def getCoins(token):
                                  'Content-Length': '26',
                                  'User-Agent': 'Mozilla/5.0 (Linux; Android 7.0; MI 5 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 Mobile Safari/537.36 source/jegotrip',
                                  'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
-                                 'Referer': 'https://app.jegotrip.com.cn/wyx/appwap/tripcoins/coinsHistory.html?token={token}&from=app'
+                                 'Referer': 'https://app.jegotrip.com.cn/wyx/appwap/tripcoins/coinsHistory.html?token=6d8b7e4204764e6cb953d8a859926007&from=app'
                              })
         data = resp.json()
         pprint.pprint(data)
@@ -84,7 +84,7 @@ def main():
     _sign = os.getenv('JEGOTRIP_SIGN')
     checkin_state = ''
     cli = JegoTrip(_user_id)
-    pein = getCoins(_token)
+    pein = getCoins()
     for task in cli.task().get('日常任务', []):
         if task.get('name') == '每日签到奖励':
             if task.get('triggerAction') == '签到':
