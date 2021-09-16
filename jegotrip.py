@@ -43,8 +43,8 @@ class JegoTrip():
                 return True if task.get('triggerAction') == '已签到' else False
 
 def readcredits(token, sign):
-    time_tup = int(time.localtime(time.time()))
-    resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token={token}&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp={time_tup}&sign={sign}')
+    #time_tup = int(time.localtime(time.time()))
+    resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token={token}&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp=1631801693&sign={sign}')
     data = resp.json()
     #pprint.pprint(data)
     _logonFreeUrl = data['body']['logonFreeUrl']
