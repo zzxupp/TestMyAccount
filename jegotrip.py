@@ -99,5 +99,5 @@ def main():
     return f"{checkin_state}，当前无忧币的总数："
     #print(JEGOTRIP_MSG)
 
-if __name__ != '__main__':
+if __name__ == '__main__':
     JEGOTRIP_MSG = f"【Jegotrip任务简报】\n{main()}"
