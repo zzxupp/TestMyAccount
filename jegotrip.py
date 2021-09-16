@@ -72,10 +72,10 @@ def readcredits(token, sign):
     resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token={token}&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp=1631803493&sign={sign}')
     data = resp.json()
     pprint.pprint(data)
-    _logonFreeUrl = data['body']['logonFreeUrl']
-    resqlist = _logonFreeUrl.split("&")
-    resqchar = resqlist[2]
-    pprint.pprint(resqchar)
+    #_logonFreeUrl = data['body']['logonFreeUrl']
+    #resqlist = _logonFreeUrl.split("&")
+    #resqchar = resqlist[2]
+    #pprint.pprint(resqchar)
     #return resqchar.split("=")[1]
     return 1
 
