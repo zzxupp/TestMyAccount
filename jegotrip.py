@@ -37,6 +37,12 @@ class JegoTrip():
         data = resp.json()
         #pprint.pprint(data)
         return data['result']
+    
+    def verify_result(self):
+        tasks = self.task()
+        for task in tasks.get('日常任务', []):
+            if task.get('name') == '每日签到奖励':
+                return True if task.get('triggerAction') == '已签到' else False
 
 def getCoins(token):
         resp = requests.post('http://task.jegotrip.com.cn/api/service/user/v1/getUserTripCoins',
@@ -61,12 +67,6 @@ def getCoins(token):
         data = resp.json()
         pprint.pprint(data)
         return 1
-    
-    def verify_result(self):
-        tasks = self.task()
-        for task in tasks.get('日常任务', []):
-            if task.get('name') == '每日签到奖励':
-                return True if task.get('triggerAction') == '已签到' else False
 
 def readcredits(token, sign):
     resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token={token}&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp=1631803493&sign={sign}')
