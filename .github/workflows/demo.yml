@@ -35,8 +35,7 @@ jobs:
         
     - name: Build and publish
       run: |
-        #python3 pushmsg.py
-        python3 jegotrip.py
+        python3 pushmsg.py
       env: 
         QW360_TOKEN: ${{ secrets.QW360_TOKEN }}
         GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
