@@ -84,7 +84,7 @@ def main():
     _sign = os.getenv('JEGOTRIP_SIGN')
     checkin_state = ''
     cli = JegoTrip(_user_id)
-    pein = cli.getCoins(_token)
+    pein = getCoins(_token)
     for task in cli.task().get('日常任务', []):
         if task.get('name') == '每日签到奖励':
             if task.get('triggerAction') == '签到':
