@@ -71,7 +71,7 @@ def getCoins():
 def readcredits(token, sign):
     resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token={token}&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp=1631803493&sign={sign}')
     data = resp.json()
-    #pprint.pprint(data)
+    pprint.pprint(data)
     _logonFreeUrl = data['body']['logonFreeUrl']
     resqlist = _logonFreeUrl.split("&")
     resqchar = resqlist[2]
@@ -84,7 +84,6 @@ def main():
     _sign = os.getenv('JEGOTRIP_SIGN')
     checkin_state = ''
     cli = JegoTrip(_user_id)
-    pein = getCoins()
     for task in cli.task().get('日常任务', []):
         if task.get('name') == '每日签到奖励':
             if task.get('triggerAction') == '签到':
@@ -96,7 +95,7 @@ def main():
                     #print('签到成功!' if cli.verify_result() else '签到失败:未知')
             elif task.get('triggerAction') == '已签到':
                 checkin_state = '今日已签到!'
-    return f"{checkin_state}，当前无忧币的总数："
+    return f"{checkin_state}，当前无忧币的总数：{readcredits(_token,_sign)}"
     #print(JEGOTRIP_MSG)
 
 if __name__ == '__main__':
