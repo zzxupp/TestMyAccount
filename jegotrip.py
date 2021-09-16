@@ -37,6 +37,30 @@ class JegoTrip():
         data = resp.json()
         #pprint.pprint(data)
         return data['result']
+
+    def getCoins(self, token) -> bool:
+        resp = requests.post('http://task.jegotrip.com.cn/api/service/user/v1/getUserTripCoins',
+                             json={
+                                 'lang': 'zh_CN',
+                                 'token': token    # 此处`I`要大写
+                             },
+                             headers={
+                                 'Accept-Encoding': 'gzip, deflate, br',
+                                 'Origin': 'https://app.jegotrip.com.cn',
+                                 'Accept': '*/*',
+                                 'X-Requested-With': 'XMLHttpRequest',
+                                 'Sec-Fetch-Mode': 'cors',
+                                 'Content-Type': 'application/json;charset=utf-8',
+                                 'Connection': 'keep-alive',
+                                 'Host': 'app.jegotrip.com.cn',
+                                 'Content-Length': '26',
+                                 'User-Agent': 'Mozilla/5.0 (Linux; Android 7.0; MI 5 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 Mobile Safari/537.36 source/jegotrip',
+                                 'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
+                                 'Referer': 'https://app.jegotrip.com.cn/wyx/appwap/tripcoins/coinsHistory.html?token={token}&from=app'
+                             })
+        data = resp.json()
+        pprint.pprint(data)
+        return data['body']
     
     def verify_result(self):
         tasks = self.task()
@@ -45,7 +69,7 @@ class JegoTrip():
                 return True if task.get('triggerAction') == '已签到' else False
 
 def readcredits(token, sign):
-    resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token={token}&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp=1631350857951&sign={sign}')
+    resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token={token}&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp=1631803493&sign={sign}')
     data = resp.json()
     #pprint.pprint(data)
     _logonFreeUrl = data['body']['logonFreeUrl']
@@ -60,6 +84,7 @@ def main():
     _sign = os.getenv('JEGOTRIP_SIGN')
     checkin_state = ''
     cli = JegoTrip(_user_id)
+    pein = cli.getCoins(_token)
     for task in cli.task().get('日常任务', []):
         if task.get('name') == '每日签到奖励':
             if task.get('triggerAction') == '签到':
@@ -71,7 +96,7 @@ def main():
                     #print('签到成功!' if cli.verify_result() else '签到失败:未知')
             elif task.get('triggerAction') == '已签到':
                 checkin_state = '今日已签到!'
-    return f"{checkin_state}，当前无忧币的总数：{readcredits(_token,_sign)}"
+    return f"{checkin_state}，当前无忧币的总数："
     #print(JEGOTRIP_MSG)
 
 if __name__ != '__main__':
