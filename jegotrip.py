@@ -69,7 +69,7 @@ def getCoins():
         return 'zzzz'
 
 def readcredits():
-    resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token=6d8b7e4204764e6cb953d8a859926007&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp=1631805453942&sign=6b59c1e812658c41f3f38099850ecf2346fdae73')
+    resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token=309b1158cb55403baceab0ee0b52ff25&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp=1633005344408&sign=4cb0f0aa73c2ddd88bdefec382c2637cefe66dd1')
     data = resp.json()
     #pprint.pprint(data)
     _logonFreeUrl = data['body']['logonFreeUrl']
