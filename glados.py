@@ -1,9 +1,10 @@
 import requests,json,os
 
 GLADOS_COOKIE = os.environ["GLADOS_COOKIE"]  
+GLADOS_COOKIE_BACK = os.environ["GLADOS_COOKIE_BACK"] 
 GLADOS_MSG = ''
 
-def start(): 
+def start(gcookie): 
     url= "https://glados.rocks/api/user/checkin"
     url2= "https://glados.rocks/api/user/status"
     origin = "https://glados.rocks"
@@ -12,8 +13,8 @@ def start():
     payload={
         'token': 'glados_network'
     }
-    checkin = requests.post(url,headers={'cookie': GLADOS_COOKIE ,'referer': referer,'origin':origin,'user-agent':useragent,'content-type':'application/json;charset=UTF-8'},data=json.dumps(payload))
-    state =  requests.get(url2,headers={'cookie': GLADOS_COOKIE ,'referer': referer,'origin':origin,'user-agent':useragent})
+    checkin = requests.post(url,headers={'cookie': gcookie ,'referer': referer,'origin':origin,'user-agent':useragent,'content-type':'application/json;charset=UTF-8'},data=json.dumps(payload))
+    state =  requests.get(url2,headers={'cookie': gcookie ,'referer': referer,'origin':origin,'user-agent':useragent})
    # print(res)
 
     if 'message' in checkin.text:
@@ -26,5 +27,5 @@ def main_handler(event, context):
   return start()
 
 if __name__ != '__main__':
-    GLADOS_MSG =  '【GlaDOS任务简报】\n' + start() + '\n'
+    GLADOS_MSG =  '【GlaDOS任务简报】\n' + start(GLADOS_COOKIE) + '\n' + start(GLADOS_COOKIE_BACK) + '\n'
 
