@@ -9,7 +9,7 @@ def start(gcookie):
     url2= "https://glados.rocks/api/user/status"
     origin = "https://glados.rocks"
     referer = "https://glados.rocks/console/checkin"
-    useragent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.112 Safari/537.36"
+    useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
     payload={
         'token': 'glados_network'
     }
