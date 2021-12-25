@@ -15,3 +15,5 @@ There are something to test by myself
 [jiongjiongJOJO/womail_checkin](https://github.com/jiongjiongJOJO/womail_checkin) 
 
 [xiaomustudent/glados-checkin](https://github.com/xiaomustudent/glados-checkin) 
+
+[Sitoi/dailycheckin](https://github.com/sitoi/dailycheckin)
