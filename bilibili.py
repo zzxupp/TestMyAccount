@@ -394,19 +394,19 @@ class BiliBiliCheckIn(object):
 BILIBILI_MSG = ''
 #if __name__ != "__main__":
     # 未填写参数取消运行
-    if os.environ['BILI_USER'] == "" or os.environ['BILI_PASS'] == "":
-        if os.environ['BILI_COOKIE'] == "":
-            print("未填写哔哩哔哩账号密码或COOKIE取消运行")
-            exit(0)
-    if BILI_COOKIE == "":
-        b = Bilibili()
-        login = b.login(username=os.environ['BILI_USER'], password=os.environ['BILI_PASS'])
-        if login == False:
-            print('登录失败 账号或密码错误，详情前往Github查看')
-            exit(0)
-        _bilibili_cookie_list = b.get_cookies()
-    else:
-        _bilibili_cookie_list = {cookie.split('=')[0]:cookie.split('=')[-1] for cookie in BILI_COOKIE.split(';')}
+if os.environ['BILI_USER'] == "" or os.environ['BILI_PASS'] == "":
+    if os.environ['BILI_COOKIE'] == "":
+        print("未填写哔哩哔哩账号密码或COOKIE取消运行")
+        exit(0)
+if BILI_COOKIE == "":
+    b = Bilibili()
+    login = b.login(username=os.environ['BILI_USER'], password=os.environ['BILI_PASS'])
+    if login == False:
+        print('登录失败 账号或密码错误，详情前往Github查看')
+        exit(0)
+    _bilibili_cookie_list = b.get_cookies()
+else:
+    _bilibili_cookie_list = {cookie.split('=')[0]:cookie.split('=')[-1] for cookie in BILI_COOKIE.split(';')}
         #global BILIBILI_MSG
-        BILIBILI_MSG = BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main() + '\n'
+    BILIBILI_MSG = BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main() + '\n'
 
