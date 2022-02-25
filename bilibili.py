@@ -3,7 +3,6 @@ import json, os, random,requests,rsa, sys, time
 SEND_KEY = os.environ['SEND_KEY']
 BILI_COOKIE = os.environ['BILI_COOKIE'].replace(" ", "")
 
-global msg
 
 class BiliBiliCheckIn(object):
     # 待测试，需要大会员账号测试领取福利
@@ -379,7 +378,7 @@ class BiliBiliCheckIn(object):
             today_exp = len([one for one in [login, watch_av, share_av] if one]) * 5
             today_exp += coins_av
             update_data = (28800 - new_current_exp) // (today_exp if today_exp else 1)
-            msg = (
+            msg1 = (
                 f"【Bilibili任务简报】\n帐号信息: {uname}\n漫画签到: {manhua_msg}\n直播签到: {live_msg}\n"
                 f"登陆任务: 今日已登陆\n观看视频: {report_msg}\n分享任务: {share_msg}\n投币任务: {coin_msg}\n"
                 f"银瓜子兑换硬币: {silver2coin_msg}\n今日获得经验: {today_exp}\n当前经验: {new_current_exp}\n"
@@ -388,8 +387,8 @@ class BiliBiliCheckIn(object):
             #print(msg)
             if SEND_KEY == '':
                 Print('哔哩哔哩签到')
-            msg_list.append(msg)
-        return msg
+            msg_list.append(msg1)
+        return msg1
 
 BILIBILI_MSG = ''
 if __name__ != "__main__":
