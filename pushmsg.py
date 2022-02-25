@@ -31,7 +31,7 @@ def qmsg(qmsg_key, qq, message):
         print('Qmsg酱 推送成功')
 
 #qmsg(QMSG_KEY, QQ, WOMAIL_MSG + '\n\n' + GLADOS_MSG + '\n\n' + BILIBILI_MSG + '\n\n' + EUSERV_MSG + '\n\n' + CLOUDMUSIC_MSG + '\n\n' + JEGOTRIP_MSG)
-qw360(QW360_TOKEN, WOMAIL_MSG + '\n\n' + BILIBILI_MSG + '\n\n' + EUSERV_MSG + '\n\n' + CLOUDMUSIC_MSG + '\n\n' + JEGOTRIP_MSG)
+qw360(QW360_TOKEN, BILIBILI_MSG + '\n\n' + EUSERV_MSG + '\n\n' + CLOUDMUSIC_MSG + '\n\n' + JEGOTRIP_MSG)
 #qw360(QW360_TOKEN, WOMAIL_MSG + '\n\n' + GLADOS_MSG + '\n\n' + BILIBILI_MSG + '\n\n' + EUSERV_MSG + '\n\n' + CLOUDMUSIC_MSG + '\n\n' + JEGOTRIP_MSG)
 #print(WOMAIL_MSG + '\n')
 #print(GLADOS_MSG + '\n')
