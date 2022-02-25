@@ -258,6 +258,7 @@ class BiliBiliCheckIn(object):
 
     def main(self):
         msg_list = []
+        msg1 = ''  # 空值
         bilibili_cookie = self.bilibili_cookie_list
         bili_jct = bilibili_cookie.get("bili_jct")
 
