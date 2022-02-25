@@ -388,7 +388,7 @@ class BiliBiliCheckIn(object):
         return msg_all
 
 BILIBILI_MSG = ''
-if __name__ != "__main__":
+if __name__ == "__main__":
     # 未填写参数取消运行
     if os.environ['BILI_USER'] == "" or os.environ['BILI_PASS'] == "":
         if os.environ['BILI_COOKIE'] == "":
@@ -404,5 +404,7 @@ if __name__ != "__main__":
     else:
         _bilibili_cookie_list = {cookie.split('=')[0]:cookie.split('=')[-1] for cookie in BILI_COOKIE.split(';')}
         #global BILIBILI_MSG
+        
         BILIBILI_MSG = BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()
+        print(BILIBILI_MSG)
 
