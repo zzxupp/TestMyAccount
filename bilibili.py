@@ -3,7 +3,7 @@ import json, os, random,requests,rsa, sys, time
 SEND_KEY = os.environ['SEND_KEY']
 BILI_COOKIE = os.environ['BILI_COOKIE'].replace(" ", "")
 
-global msg = ''  # 空值
+global msg
 
 class BiliBiliCheckIn(object):
     # 待测试，需要大会员账号测试领取福利
