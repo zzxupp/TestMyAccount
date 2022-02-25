@@ -258,7 +258,6 @@ class BiliBiliCheckIn(object):
 
     def main(self):
         msg_list = []
-        global msg
         bilibili_cookie = self.bilibili_cookie_list
         bili_jct = bilibili_cookie.get("bili_jct")
 
@@ -379,7 +378,7 @@ class BiliBiliCheckIn(object):
             today_exp = len([one for one in [login, watch_av, share_av] if one]) * 5
             today_exp += coins_av
             update_data = (28800 - new_current_exp) // (today_exp if today_exp else 1)
-            msg = (
+            msg1 = (
                 f"【Bilibili任务简报】\n帐号信息: {uname}\n漫画签到: {manhua_msg}\n直播签到: {live_msg}\n"
                 f"登陆任务: 今日已登陆\n观看视频: {report_msg}\n分享任务: {share_msg}\n投币任务: {coin_msg}\n"
                 f"银瓜子兑换硬币: {silver2coin_msg}\n今日获得经验: {today_exp}\n当前经验: {new_current_exp}\n"
@@ -388,8 +387,8 @@ class BiliBiliCheckIn(object):
             #print(msg)
             if SEND_KEY == '':
                 Print('哔哩哔哩签到')
-            msg_list.append(msg)
-        return msg
+            msg_list.append(msg1)
+        return msg1
 
 BILIBILI_MSG = ''
 if __name__ != "__main__":
@@ -408,5 +407,5 @@ if __name__ != "__main__":
     else:
         _bilibili_cookie_list = {cookie.split('=')[0]:cookie.split('=')[-1] for cookie in BILI_COOKIE.split(';')}
         #global BILIBILI_MSG
-        BILIBILI_MSG = BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main() + '\n'
+        BILIBILI_MSG = BiliBiliCheckIn(bilibili_cookie_list=_bilibili_cookie_list).main()
 
