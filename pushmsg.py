@@ -1,7 +1,7 @@
 import json,os,re,requests
 
-from womail import WOMAIL_MSG
-from glados import GLADOS_MSG
+#from womail import WOMAIL_MSG
+#from glados import GLADOS_MSG
 from euserv import EUSERV_MSG
 from bilibili import BILIBILI_MSG
 from cloudmusic import CLOUDMUSIC_MSG
