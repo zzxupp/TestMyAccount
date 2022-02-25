@@ -45,7 +45,7 @@ class JegoTrip():
                 return True if task.get('triggerAction') == '已签到' else False
 
 def getCoins():
-        resp = requests.post('http://task.jegotrip.com.cn/api/service/user/v1/getUserTripCoins?lang=zh_CN&token=6d8b7e4204764e6cb953d8a859926007',
+        resp = requests.post('http://task.jegotrip.com.cn/api/service/user/v1/getUserTripCoins?lang=zh_CN&token=36f3d4fbb05342ab80ca148897653a24',
                              json={
                                  'page': '1',
                                  'pageSize': '30'    # 此处`I`要大写
