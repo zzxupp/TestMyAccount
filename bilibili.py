@@ -388,6 +388,7 @@ class BiliBiliCheckIn(object):
             if SEND_KEY == '':
                 Print('哔哩哔哩签到')
             msg_list.append(msg)
+            print(msg)
         return msg
 
 BILIBILI_MSG = ''
