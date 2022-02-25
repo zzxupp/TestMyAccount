@@ -62,14 +62,14 @@ def getCoins():
                                  'Content-Length': '26',
                                  'User-Agent': 'Mozilla/5.0 (Linux; Android 7.0; MI 5 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 Mobile Safari/537.36 source/jegotrip',
                                  'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
-                                 'Referer': 'https://app.jegotrip.com.cn/wyx/appwap/tripcoins/coinsHistory.html?token=6d8b7e4204764e6cb953d8a859926007&from=app'
+                                 'Referer': 'https://app.jegotrip.com.cn/wyx/appwap/tripcoins/coinsHistory.html?token=36f3d4fbb05342ab80ca148897653a24&from=app'
                              })
         data = resp.json()
         #pprint.pprint(data)
         return 'zzzz'
 
 def readcredits():
-    resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token=309b1158cb55403baceab0ee0b52ff25&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp=1633005344408&sign=4cb0f0aa73c2ddd88bdefec382c2637cefe66dd1')
+    resp = requests.get(f'https://app1.jegotrip.com.cn/api/duiba/v1/mall/logonFree?token=36f3d4fbb05342ab80ca148897653a24&url=http://www.duiba.com.cn/autoLogin/autologin&timestamp=1645792555720&sign=4b68b6f23a46196196af9e6f36f4dea5da380e19')
     data = resp.json()
     #pprint.pprint(data)
     _logonFreeUrl = data['body']['logonFreeUrl']
